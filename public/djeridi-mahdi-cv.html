@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mahdi Djeridi — CV Full Stack & AI Engineer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      color: #0f172a;
+      background-color: #f7f9fa;
+      display: flex;
+      justify-content: center;
+      padding: 20px;
+      -webkit-print-color-adjust: exact;
+    }
+    .cv-page {
+      background: #ffffff;
+      width: 210mm;
+      min-height: 297mm;
+      padding: 40px 48px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      position: relative;
+    }
+
+    /* Top Header */
+    .header {
+      display: grid;
+      grid-template-columns: 1fr 140px 1fr;
+      align-items: center;
+      margin-bottom: 22px;
+    }
+    .name-block {
+      text-transform: uppercase;
+      font-size: 26px;
+      font-weight: 700;
+      letter-spacing: 6px;
+      line-height: 1.25;
+      color: #0f172a;
+    }
+    .name-subtitle {
+      font-size: 9.5px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: #2563eb;
+      margin-top: 6px;
+      text-transform: uppercase;
+    }
+    .name-desc {
+      font-size: 8.8px;
+      font-weight: 500;
+      color: #475569;
+      margin-top: 5px;
+      line-height: 1.35;
+      text-transform: none;
+      letter-spacing: normal;
+    }
+    .photo-block {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .profile-photo {
+      width: 125px;
+      height: 125px;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: center 20%;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.12);
+      border: 1px solid #cbd5e1;
+    }
+    .contact-block {
+      text-align: right;
+    }
+    .contact-header {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: #0f172a;
+      margin-bottom: 8px;
+    }
+    .contact-item {
+      font-size: 10.5px;
+      font-weight: 500;
+      color: #334155;
+      margin-bottom: 3.5px;
+      line-height: 1.4;
+    }
+    .contact-item a {
+      color: #2563eb;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .divider {
+      width: 100%;
+      height: 1.5px;
+      background-color: #0f172a;
+      margin-bottom: 24px;
+    }
+
+    /* Main Grid */
+    .main-grid {
+      display: grid;
+      grid-template-columns: 37% 63%;
+      gap: 32px;
+    }
+
+    /* Section Titles */
+    .section-title {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: #0f172a;
+      margin-top: 20px;
+      margin-bottom: 12px;
+      white-space: nowrap;
+    }
+    .section-title.long-title {
+      letter-spacing: 2px;
+    }
+    .left-col .section-title:first-child,
+    .right-col .section-title:first-child {
+      margin-top: 0;
+    }
+
+    /* Items */
+    .edu-item {
+      margin-bottom: 14px;
+    }
+    .edu-degree {
+      font-size: 10.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: #0f172a;
+      line-height: 1.3;
+    }
+    .edu-period {
+      font-size: 10px;
+      font-weight: 600;
+      color: #475569;
+      margin: 2px 0;
+    }
+    .edu-inst {
+      font-size: 10px;
+      font-style: italic;
+      color: #64748b;
+    }
+
+    /* Lists */
+    ul.skill-list, ul.simple-list {
+      list-style-type: disc;
+      padding-left: 15px;
+      font-size: 10px;
+      color: #1e293b;
+      line-height: 1.6;
+    }
+    ul.skill-list li, ul.simple-list li {
+      margin-bottom: 5px;
+    }
+    .skill-cat {
+      font-weight: 700;
+      color: #0f172a;
+    }
+
+    /* Right Column (Experiences) */
+    .job-item {
+      margin-bottom: 22px;
+    }
+    .job-title-row {
+      font-size: 11.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: #0f172a;
+      line-height: 1.3;
+    }
+    .job-period-row {
+      font-size: 10px;
+      font-style: italic;
+      font-weight: 600;
+      color: #475569;
+      margin-top: 3px;
+      margin-bottom: 8px;
+    }
+    ul.job-bullets {
+      list-style-type: disc;
+      padding-left: 15px;
+      font-size: 10px;
+      color: #1e293b;
+      line-height: 1.6;
+    }
+    ul.job-bullets li {
+      margin-bottom: 6px;
+    }
+    .bullet-bold {
+      font-weight: 700;
+      color: #0f172a;
+    }
+
+    /* Print styles */
+    @media print {
+      body {
+        background: white;
+        padding: 0;
+      }
+      .cv-page {
+        box-shadow: none;
+        width: 100%;
+        min-height: 100vh;
+        padding: 30px 35px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="cv-page">
+    <!-- Header -->
+    <div class="header">
+      <div class="name-block">
+        <div>M A H D I</div>
+        <div>D J E R I D I</div>
+        <div class="name-subtitle">Full Stack & AI Engineer · DevOps Specialist</div>
+        <div class="name-desc">Conception d'applications web scalables, d'architectures IA autonomes, de systèmes haute performance & workflows DevOps.</div>
+      </div>
+      <div class="photo-block">
+        <img src="profile.jpg" alt="Mahdi Djeridi" class="profile-photo" />
+      </div>
+      <div class="contact-block">
+        <div class="contact-header">C O N T A C T</div>
+        <div class="contact-item">📞 0555 65 13 30 / +213 555 65 13 30</div>
+        <div class="contact-item">📧 djeridimahdi10@gmail.com</div>
+        <div class="contact-item">📍 Alger, Algérie</div>
+        <div class="contact-item">🌐 <a href="https://mahdi-djeridi.vercel.app">mahdi-djeridi.vercel.app</a></div>
+        <div class="contact-item">💼 linkedin.com/in/mehdi-djeridi-7b924b2a4</div>
+      </div>
+    </div>
+
+    <!-- Divider Line -->
+    <div class="divider"></div>
+
+    <!-- Main Body Columns -->
+    <div class="main-grid">
+      <!-- Left Column -->
+      <div class="left-col">
+        <div class="section-title">C O M P É T E N C E S</div>
+        <ul class="skill-list">
+          <li><span class="skill-cat">Frontend:</span> React.js, Next.js (App Router), TypeScript, Tailwind CSS, Three.js, WebGL, Framer Motion, Figma UI/UX</li>
+          <li><span class="skill-cat">Backend:</span> ASP.NET Core (C# .NET 8), Node.js, NestJS, Express.js, APIs RESTful, GraphQL, JWT, RBAC</li>
+          <li><span class="skill-cat">AI & ML:</span> LLM APIs (OpenAI, Gemini, Claude), Prompt Chaining, Pipelines RAG, Vector Embeddings, Agents IA, Python, LangChain</li>
+          <li><span class="skill-cat">DevOps & Cloud:</span> Docker, Orchestration, CI/CD (GitHub Actions), Linux Admin, Vercel, Azure, Git</li>
+          <li><span class="skill-cat">Bases de Données:</span> SQL Server, PostgreSQL, Redis, Modélisation relationnelle, Procédures stockées, Indexation</li>
+        </ul>
+
+        <div class="section-title">L A N G U E S</div>
+        <ul class="simple-list">
+          <li>Arabe (Natif)</li>
+          <li>Français (Courant / Bilingue - C1)</li>
+          <li>Anglais (Professionnel - B2/C1)</li>
+        </ul>
+
+        <div class="section-title">A P T I T U D E S</div>
+        <ul class="simple-list">
+          <li>Architecture Système & Systèmes Financiers</li>
+          <li>Intelligence Artificielle, RAG & Agents Autonomes</li>
+          <li>Graphismes WebGL 3D & Interfaces Immersives</li>
+          <li>High Performance Computing & Cloud Automation</li>
+        </ul>
+
+        <!-- Formation at the end -->
+        <div class="section-title">F O R M A T I O N</div>
+
+        <div class="edu-item">
+          <div class="edu-degree">LICENCE EN INFORMATIQUE</div>
+          <div class="edu-period">2022 – 2025</div>
+          <div class="edu-inst">Université Ferhat Abbas (UFAS 1)</div>
+        </div>
+
+        <div class="edu-item">
+          <div class="edu-degree">GOOGLE AI PROFESSIONAL CERTIFICATE</div>
+          <div class="edu-period">2026</div>
+          <div class="edu-inst">Google · Coursera (ID: YS26JC7JM5VP)</div>
+        </div>
+
+        <div class="edu-item">
+          <div class="edu-degree">FORMATION INGÉNIEUR DEVOPS</div>
+          <div class="edu-period">2025</div>
+          <div class="edu-inst">Institut de Formation Professionnelle</div>
+        </div>
+      </div>
+
+      <!-- Right Column -->
+      <div class="right-col">
+        <div class="section-title long-title">E X P É R I E N C E S &nbsp; P R O F E S S I O N N E L L E S</div>
+
+        <div class="job-item">
+          <div class="job-title-row">INGÉNIEUR DÉVELOPPEUR FULL STACK – BNH</div>
+          <div class="job-period-row">Septembre 2025 – Aujourd'hui | Banque Nationale d'Habitat (Alger)</div>
+          <ul class="job-bullets">
+            <li><span class="bullet-bold">Système Monétique & Flux Bancaires:</span> Développement et intégration de sous-systèmes monétiques pour le traitement sécurisé des transactions et cartes bancaires.</li>
+            <li><span class="bullet-bold">Reporting & Dashboards Financiers:</span> Conception de modules de reporting automatisés et tableaux de bord décisionnels pour la direction bancaire.</li>
+            <li><span class="bullet-bold">Central des Risques:</span> Architecture et développement du système national de centralisation, d'analyse et de contrôle des risques de crédit bancaires.</li>
+            <li><span class="bullet-bold">Centrale des Impayés:</span> Développement de la solution d'identification, de suivi et de gestion automatisée des créances et impayés bancaires.</li>
+            <li><span class="bullet-bold">APIs REST C# (.NET) & SQL Server:</span> APIs hautes performances en ASP.NET Core, sécurité JWT/RBAC, procédures stockées complexes et requêtes optimisées.</li>
+          </ul>
+        </div>
+
+        <div class="job-item">
+          <div class="job-title-row">INGÉNIEUR PROJET SAAS & AI – FREELANCE</div>
+          <div class="job-period-row">2024 – 2026 | Alger / En Ligne</div>
+          <ul class="job-bullets">
+            <li><span class="bullet-bold">PC LABS (Simulateur Matériel PC):</span> Application web interactive de simulation d'assemblage et d'analyse de compatibilité matérielle en temps réel avec calcul de consommation énergétique et détection de bottlenecks (Next.js 15, TypeScript, Tailwind CSS). <i>pc-labs-app.vercel.app</i></li>
+            <li><span class="bullet-bold">AURA BAGS (Portail B2B Packaging):</span> Plateforme e-commerce industrielle pour emballages avec configurateur dynamique sur-mesure (dimensions, grammage, impression), moteur de devis instantané et back-office sécurisé (Next.js 15, Node.js, Express, PostgreSQL). <i>bags-factory.vercel.app</i></li>
+            <li><span class="bullet-bold">AI NUTRITION (SaaS IA & RAG):</span> Plateforme SaaS autonome combinant des pipelines RAG (Retrieval-Augmented Generation), de la vectorisation de données nutritionnelles et du chaînage de prompts LLM pour générer des programmes alimentaires personnalisés (NestJS, Python, LangChain, OpenAI API).</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</body>
+</html>
