@@ -1,6 +1,9 @@
 import { chromium } from 'playwright';
 import path from 'path';
 import fs from 'fs';
+import { fileURLToPath } from 'url';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 async function generatePDFAndPNG() {
   const browser = await chromium.launch();
@@ -10,7 +13,14 @@ async function generatePDFAndPNG() {
   });
 
   const htmlPath = path.resolve('public/djeridi-mahdi-cv.html');
-  await page.goto(`file://${htmlPath}`, { waitUntil: 'networkidle' });
+  const profilePhotoPath = path.resolve('public/profile.jpg');
+
+  // Read HTML and fix the profile photo path to absolute so it renders in PDF
+  let htmlContent = fs.readFileSync(htmlPath, 'utf-8');
+  const absolutePhotoUrl = `file:///${profilePhotoPath.replace(/\\/g, '/')}`;
+  htmlContent = htmlContent.replace(/src="profile\.jpg"/, `src="${absolutePhotoUrl}"`);
+
+  await page.setContent(htmlContent, { waitUntil: 'networkidle' });
 
   // Generate PDF files
   const pdfPathRoot = path.resolve('djeridi-mahdi-cv.pdf');
