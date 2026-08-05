@@ -16,13 +16,7 @@ export default function CVPage() {
           >
             📄 Aperçu Web (HTML)
           </a>
-          <a
-            href="/djeridi-mahdi-cv.docx"
-            download="djeridi-mahdi-cv.docx"
-            className="px-4 py-2 text-xs font-semibold rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white transition-all shadow shadow-emerald-500/20"
-          >
-            📝 Télécharger Word (.docx)
-          </a>
+
           <a
             href="/djeridi-mahdi-cv.pdf"
             download="djeridi-mahdi-cv.pdf"
