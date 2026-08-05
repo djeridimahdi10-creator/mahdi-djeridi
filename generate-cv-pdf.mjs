@@ -15,12 +15,18 @@ async function generatePDFAndPNG() {
   const htmlPath = path.resolve('public/djeridi-mahdi-cv.html');
   const profilePhotoPath = path.resolve('public/profile.jpg');
 
-  // Read HTML and fix the profile photo path to absolute so it renders in PDF
+  // Embed the profile photo as a base64 data URI so it renders in PDF with no external dependency
+  const photoBuffer = fs.readFileSync(profilePhotoPath);
+  const photoBase64 = photoBuffer.toString('base64');
+  const photoDataUri = `data:image/jpeg;base64,${photoBase64}`;
+
   let htmlContent = fs.readFileSync(htmlPath, 'utf-8');
-  const absolutePhotoUrl = `file:///${profilePhotoPath.replace(/\\/g, '/')}`;
-  htmlContent = htmlContent.replace(/src="profile\.jpg"/, `src="${absolutePhotoUrl}"`);
+  htmlContent = htmlContent.replace(/src="profile\.jpg"/, `src="${photoDataUri}"`);
 
   await page.setContent(htmlContent, { waitUntil: 'networkidle' });
+
+  // Small delay to ensure fonts & rendering are complete
+  await page.waitForTimeout(1500);
 
   // Generate PDF files
   const pdfPathRoot = path.resolve('djeridi-mahdi-cv.pdf');
@@ -35,7 +41,7 @@ async function generatePDFAndPNG() {
   fs.writeFileSync(pdfPathRoot, pdfBuffer);
   fs.writeFileSync(pdfPathPublic, pdfBuffer);
 
-  console.log('PDFs generated successfully:\n-', pdfPathRoot, '\n-', pdfPathPublic);
+  console.log('✅ PDFs generated successfully:\n-', pdfPathRoot, '\n-', pdfPathPublic);
 
   // Generate PNG screenshot of the .cv-page element
   const element = await page.$('.cv-page');
@@ -44,7 +50,7 @@ async function generatePDFAndPNG() {
     const pngPathLegacy = path.resolve('public/cv_preview.png');
     await element.screenshot({ path: pngPath });
     await element.screenshot({ path: pngPathLegacy });
-    console.log('PNG Screenshots saved successfully');
+    console.log('✅ PNG Screenshots saved successfully');
   }
 
   await browser.close();
