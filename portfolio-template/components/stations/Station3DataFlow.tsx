@@ -105,7 +105,7 @@ export default function Station3DataFlow() {
           color="#ffffff"
           anchorX="center"
           anchorY="middle"
-          font="https://fonts.gstatic.com/s/spacegrotesk/v16/V8mDoQDjQSkFtoMM3T6r8E7mF71Q-gowFXNvNHc.woff2"
+          font="https://fonts.gstatic.com/s/outfit/v11/QGYyz_MVcBeNP4NjuGObqx1XmO1I4TC1C4G-EiAou6Y.woff2"
         >
           AI & Data Flow
         </Text>
