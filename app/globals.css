@@ -741,7 +741,13 @@ canvas { display: block; }
   .marquee-content {
     gap: 32px;
   }
+
+  /* Hide desktop-only HUD elements on mobile */
+  .nav-rail {
+    display: none !important;
+  }
 }
+
 
 /* Small mobile (≤480px) */
 @media (max-width: 480px) {
