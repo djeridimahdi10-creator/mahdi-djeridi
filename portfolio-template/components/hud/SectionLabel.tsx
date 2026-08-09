@@ -39,18 +39,15 @@ export default function SectionLabel() {
   return (
     <>
       {/* Bottom-left: Journey progress */}
-      <div
-        className="section-label-progress"
-        style={{
-          position: "fixed",
-          bottom: "28px",
-          left: "28px",
-          zIndex: 20,
-          display: "flex",
-          flexDirection: "column",
-          gap: "8px",
-        }}
-      >
+      <div style={{
+        position: "fixed",
+        bottom: "28px",
+        left: "28px",
+        zIndex: 20,
+        display: "flex",
+        flexDirection: "column",
+        gap: "8px",
+      }}>
         <AnimatePresence mode="wait">
           <motion.div
             key={current}
@@ -113,16 +110,13 @@ export default function SectionLabel() {
       </div>
 
       {/* Bottom-right: Section name label */}
-      <div
-        className="section-label-name"
-        style={{
-          position: "fixed",
-          bottom: "80px",
-          right: "52px",
-          zIndex: 20,
-          textAlign: "right",
-        }}
-      >
+      <div style={{
+        position: "fixed",
+        bottom: "80px",
+        right: "52px",
+        zIndex: 20,
+        textAlign: "right",
+      }}>
         <AnimatePresence mode="wait">
           <motion.div
             key={`label-${current}`}
@@ -142,16 +136,6 @@ export default function SectionLabel() {
           </motion.div>
         </AnimatePresence>
       </div>
-
-      <style>{`
-        @media (max-width: 768px) {
-          .section-label-progress,
-          .section-label-name {
-            display: none !important;
-          }
-        }
-      `}</style>
     </>
   );
 }
-

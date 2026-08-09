@@ -90,7 +90,6 @@ export default function AboutChapter() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="about-stats-grid"
           style={{
             display: "grid",
             gridTemplateColumns: "repeat(3, 1fr)",
@@ -139,15 +138,12 @@ export default function AboutChapter() {
         </motion.div>
 
         {/* Main Content: Terminal + Identity Cards */}
-        <div
-          className="about-main-grid"
-          style={{
-            display: "grid",
-            gridTemplateColumns: "1.2fr 1fr",
-            gap: "clamp(20px, 3vw, 36px)",
-            alignItems: "stretch",
-          }}
-        >
+        <div style={{
+          display: "grid",
+          gridTemplateColumns: "1.2fr 1fr",
+          gap: "clamp(20px, 3vw, 36px)",
+          alignItems: "stretch",
+        }}>
           {/* ── Terminal Card ── */}
           <motion.div
             initial={{ opacity: 0, x: -28 }}
@@ -408,15 +404,15 @@ export default function AboutChapter() {
 
       <style>{`
         @media (max-width: 768px) {
-          .about-main-grid {
+          #about-section > div > div:last-child {
             grid-template-columns: 1fr !important;
           }
-          .about-stats-grid {
+          #about-section > div > div:nth-child(2) {
             grid-template-columns: repeat(2, 1fr) !important;
           }
         }
         @media (max-width: 480px) {
-          .about-stats-grid {
+          #about-section > div > div:nth-child(2) {
             grid-template-columns: 1fr !important;
           }
         }

@@ -79,7 +79,7 @@ export default function ProjectsChapter() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.12, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-            className="glass-card project-card"
+              className="glass-card"
               style={{
                 borderRadius: "var(--radius-xl)",
                 overflow: "hidden",
@@ -164,12 +164,8 @@ export default function ProjectsChapter() {
 
       <style>{`
         @media (max-width: 768px) {
-          .project-card {
+          .glass-card[style*="grid"] {
             grid-template-columns: 1fr !important;
-          }
-          /* On mobile, always show image first then content */
-          .project-card > *:first-child {
-            order: -1;
           }
         }
       `}</style>

@@ -93,15 +93,14 @@ export default function HeroChapter() {
 
   return (
     <div
-      className="story-chapter story-chapter-interactive hero-chapter"
+      className="story-chapter story-chapter-interactive"
       ref={containerRef}
-      style={{ paddingTop: "clamp(100px, 14vh, 180px)" }}
+      style={{ paddingTop: "clamp(120px, 16vh, 180px)" }}
     >
-      {/* Floating decorative particles — hidden on mobile */}
+      {/* Floating decorative particles */}
       {[...Array(6)].map((_, i) => (
         <motion.div
           key={i}
-          className="hero-particle"
           animate={{
             y: [0, -18, 0],
             opacity: [0.15, 0.45, 0.15],
@@ -130,7 +129,6 @@ export default function HeroChapter() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.9 }}
-        className="hero-grid"
         style={{
           maxWidth: "var(--content-max)",
           width: "100%",
@@ -297,7 +295,7 @@ export default function HeroChapter() {
             >
               <span>{t.hero.exploreWork}</span>
               <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                <path d="M1 7h12M7 1l6 6-6 6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M1 7h12M7 1l6 6-6 6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
             </motion.button>
 
@@ -312,7 +310,7 @@ export default function HeroChapter() {
             >
               <span>{t.hero.viewResume}</span>
               <svg width="13" height="13" viewBox="0 0 13 13" fill="none">
-                <path d="M1 6.5h11M6.5 1l5.5 5.5-5.5 5.5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M1 6.5h11M6.5 1l5.5 5.5-5.5 5.5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
             </motion.a>
           </motion.div>
@@ -370,7 +368,6 @@ export default function HeroChapter() {
           initial={{ opacity: 0, scale: 0.85, x: 20 }}
           animate={{ opacity: 1, scale: 1, x: 0 }}
           transition={{ duration: 1.0, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-          className="hero-avatar"
           style={{
             position: "relative",
             display: "flex",
@@ -535,24 +532,8 @@ export default function HeroChapter() {
       {/* Responsive override */}
       <style>{`
         @media (max-width: 768px) {
-          .hero-chapter {
-            padding-top: 100px !important;
-            align-items: flex-start !important;
-          }
-          .hero-grid {
-            grid-template-columns: 1fr !important;
-            gap: 32px !important;
-          }
-          .hero-avatar {
-            justify-self: center;
-            margin-bottom: 8px;
-          }
-          .hero-particle { display: none !important; }
-        }
-        @media (max-width: 480px) {
-          .hero-grid {
-            gap: 24px !important;
-          }
+          .hero-grid { grid-template-columns: 1fr !important; }
+          .hero-avatar { display: none !important; }
         }
       `}</style>
     </div>

@@ -178,7 +178,6 @@ export default function DataFlowChapter() {
             gap: "14px",
             width: "100%",
           }}
-          className="dataflow-metrics-grid"
         >
           {METRICS.map((m, i) => (
             <motion.div
@@ -220,14 +219,6 @@ export default function DataFlowChapter() {
           ))}
         </motion.div>
       </div>
-
-      <style>{`
-        @media (max-width: 480px) {
-          .dataflow-metrics-grid {
-            grid-template-columns: 1fr !important;
-          }
-        }
-      `}</style>
     </div>
   );
 }

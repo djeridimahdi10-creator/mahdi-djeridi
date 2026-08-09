@@ -162,14 +162,11 @@ export default function SkillsChapter() {
         </motion.div>
 
         {/* 2×2 Skill Grid */}
-        <div
-          className="skills-grid"
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(2, 1fr)",
-            gap: "clamp(14px, 2.5vw, 22px)",
-          }}
-        >
+        <div style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(2, 1fr)",
+          gap: "clamp(14px, 2.5vw, 22px)",
+        }}>
           {slabs.map((s, i) => (
             <motion.div
               key={s.layer}
@@ -344,9 +341,7 @@ export default function SkillsChapter() {
 
       <style>{`
         @media (max-width: 640px) {
-          .skills-grid {
-            grid-template-columns: 1fr !important;
-          }
+          .skills-grid { grid-template-columns: 1fr !important; }
         }
       `}</style>
     </div>

@@ -693,86 +693,21 @@ html[data-theme="light"] .nav-dot {
 canvas { display: block; }
 
 /* ── Responsive Utilities ─────────────────────────── */
-
-/* Tablet */
-@media (max-width: 1024px) {
-  :root {
-    --section-padding-x: clamp(24px, 5vw, 60px);
-  }
-}
-
-/* Mobile (≤768px) */
 @media (max-width: 768px) {
-  /* Section layout */
   .story-chapter {
-    padding: 110px 20px 80px !important;
+    padding: 100px 24px;
     align-items: flex-start;
+    padding-top: 120px;
   }
 
   :root {
-    --section-padding-y: 80px;
-    --section-padding-x: 20px;
-  }
-
-  /* Section headings scale down */
-  .section-title {
-    font-size: clamp(1.6rem, 6vw, 2.2rem) !important;
-  }
-
-  /* Header padding on mobile */
-  header[style] {
-    padding-left: 16px !important;
-    padding-right: 16px !important;
-  }
-
-  /* Buttons stack neatly */
-  .btn-primary,
-  .btn-secondary {
-    padding: 12px 24px;
-    font-size: 0.85rem;
-  }
-
-  /* Timeline spine adjusts for smaller left offset */
-  .timeline-spine {
-    left: 17px;
-  }
-
-  /* Marquee slightly smaller text */
-  .marquee-content {
-    gap: 32px;
+    --section-padding-y: 100px;
+    --section-padding-x: 24px;
   }
 }
 
-/* Small mobile (≤480px) */
 @media (max-width: 480px) {
   .story-chapter {
-    padding: 100px 16px 72px !important;
-  }
-
-  :root {
-    --section-padding-x: 16px;
-  }
-
-  .section-title {
-    font-size: clamp(1.4rem, 7vw, 2rem) !important;
-  }
-
-  /* Tighter button padding on phone */
-  .btn-primary,
-  .btn-secondary,
-  .cta-button {
-    padding: 11px 20px;
-    font-size: 0.82rem;
-  }
-
-  /* Glass cards padding */
-  .glass-card {
-    padding: 18px !important;
-  }
-
-  /* Scrollbar hidden on touch */
-  ::-webkit-scrollbar {
-    width: 0;
+    padding: 100px 20px;
   }
 }
-
