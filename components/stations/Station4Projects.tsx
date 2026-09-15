@@ -24,7 +24,7 @@ const PROJECTS: Project[] = [
   {
     id: 1,
     codename: "Beta",
-    accentColor: 0xa855f7,
+    accentColor: 0xd4a754,
     position: [0, 0.5, -1.5],
     rotation: [0, 0, 0],
   },

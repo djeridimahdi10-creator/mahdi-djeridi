@@ -191,19 +191,19 @@ export const translations: Record<Language, TranslationSchema> = {
       liveDemo: "Live Demo",
       items: [
         {
+          title: "PC Labs — Interactive Hardware Simulator",
+          category: "Hardware Compatibility & Spec Benchmarking",
+          desc: "Interactive web app for configuring, benchmarking, and optimizing high-performance computer builds with real-time specs analytics.",
+        },
+        {
           title: "Aura Bags — B2B Packaging Portal",
           category: "B2B E-Commerce & Industrial Web Platform",
           desc: "Industrial-grade B2B packaging & flour bag manufacturing portal with custom specs builder, material visualizer, and order tracking.",
         },
         {
-          title: "NeuralFlow AI Agent Platform",
-          category: "AI Architecture",
-          desc: "Autonomous multi-agent orchestration framework for automated code synthesis, threat analysis, and automated workflows.",
-        },
-        {
-          title: "SecureShield Enterprise Auth",
-          category: "Application Security",
-          desc: "High-security identity provider with zero-trust RBAC, multi-tenant isolation, and OAuth2/OIDC integration.",
+          title: "NutriSaaS — AI Nutrition & Fitness Platform",
+          category: "AI Vision & Personalized Health Coaching",
+          desc: "Next-gen AI health platform with instant food macro scanner, personalized workout plans, adaptive nutrition, and Algerian Darija AI coach.",
         },
       ],
     },
@@ -334,19 +334,19 @@ export const translations: Record<Language, TranslationSchema> = {
       liveDemo: "Démo en Direct",
       items: [
         {
+          title: "PC Labs — Simulateur de Hardware Interactif",
+          category: "Compatibilité Matérielle & Benchmarking",
+          desc: "Application web interactive pour configurer, tester et optimiser des PC haute performance avec analyse de compatibilité en temps réel.",
+        },
+        {
           title: "Aura Bags — Portail d'Emballage Industriel B2B",
           category: "E-Commerce B2B & Plateforme Web",
           desc: "Portail de fabrication de sacs industriels et d'emballage B2B avec configurateur sur-mesure, visualiseur de matériaux et suivi de commande.",
         },
         {
-          title: "Plateforme d'Agents IA NeuralFlow",
-          category: "Architecture IA",
-          desc: "Framework d'orchestration multi-agents autonome pour la synthèse de code, l'analyse de menaces et l'automatisation de workflows.",
-        },
-        {
-          title: "Authentification Enterprise SecureShield",
-          category: "Sécurité Applicative",
-          desc: "Fournisseur d'identité hautement sécurisé avec RBAC Zero-Trust, isolation multi-tenant et intégration OAuth2/OIDC.",
+          title: "NutriSaaS — Plateforme IA Nutrition & Fitness",
+          category: "Vision IA & Coaching Santé Personnalisé",
+          desc: "Plateforme santé IA de nouvelle génération avec scanner d'aliments 4K, plans d'entraînement personnalisés et coach IA en Darija algérienne.",
         },
       ],
     },

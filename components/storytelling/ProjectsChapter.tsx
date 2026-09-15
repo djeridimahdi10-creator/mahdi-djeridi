@@ -39,6 +39,17 @@ const PROJECTS: Project[] = [
     image: "/projects/bags-factory.png",
     highlights: ["Live Web App", "B2B Custom Packaging Builder", "Admin Panel + Order Tracking"],
   },
+  {
+    code: "PRJ-03 · FLAGSHIP AI",
+    title: "NutriSaaS — AI-Powered Health & Nutrition Platform",
+    subtitle: "AI Vision Food Scanner · Algerian Darija AI Coach · Dynamic Macro Engine · Gym Workouts",
+    tech: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Puter.js AI", "Vercel"],
+    desc: "Architected and deployed NutriSaaS — a next-generation AI health and nutrition platform. Features real-time 4K AI food scanning & macro estimation, personalized metabolic meal plans, muscle hypertrophy tracking, and an authentic Algerian Darija AI health coach.",
+    color: "#10b981",
+    link: "https://mahdi-gym.vercel.app/",
+    image: "/projects/nutrisaas.png",
+    highlights: ["Live Web App", "4K AI Food Scanner", "Algerian Darija AI Coach", "Adaptive Macro Engine"],
+  },
 ];
 
 export default function ProjectsChapter() {

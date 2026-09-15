@@ -353,11 +353,12 @@ function ProjectsOverlay() {
       link: "https://bags-factory.vercel.app/",
     },
     {
-      code: "PRJ-03",
-      title: "AI-Driven Automated Audit System",
-      tech: "Python · C#/.NET · Next.js",
-      desc: "Field-level audit log & automated modification tracking system. Integrated AI agents manipulate and analyze data flows across domain & presentation layers.",
-      color: "#a855f7",
+      code: "PRJ-03 · LIVE",
+      title: "NutriSaaS — AI Nutrition & Fitness Platform",
+      tech: "Next.js · React · TypeScript · Puter.js AI",
+      desc: "AI health platform featuring real-time food vision scanner, custom workout plans, adaptive macro engine, & Algerian Darija AI coach.",
+      color: "#10b981",
+      link: "https://mahdi-gym.vercel.app/",
     },
   ];
 
