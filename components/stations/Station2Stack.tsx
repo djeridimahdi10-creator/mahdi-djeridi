@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useEffect } from "react";
+import { useRef } from "react";
 import { useFrame } from "@react-three/fiber";
 import { RoundedBox } from "@react-three/drei";
 import * as THREE from "three";
@@ -49,48 +49,15 @@ const SLABS: SlabConfig[] = [
   },
 ];
 
+/**
+ * Station2Stack: Skill stack slabs — always visible with idle animations.
+ * Positioned at local origin; Scene.tsx handles orbital placement.
+ */
 export default function Station2Stack() {
-  const groupRef = useRef<THREE.Group>(null!);
-  const slabRefs = useRef<THREE.Mesh[]>([]);
-  const scrollOffset = useRef(0);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollY = window.scrollY || window.pageYOffset || 0;
-      const totalH = document.documentElement.scrollHeight - window.innerHeight;
-      const p = totalH > 0 ? scrollY / totalH : 0;
-      scrollOffset.current = Math.max(0, Math.min(1, p));
-    };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    handleScroll();
-
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  useFrame(() => {
-    if (!groupRef.current) return;
-    const offset = scrollOffset.current;
-    const stationT = THREE.MathUtils.clamp((offset - 0.15) / 0.2, 0, 1);
-
-    slabRefs.current.forEach((slab, i) => {
-      if (!slab) return;
-      const delay = SLABS[i].delayOffset;
-      const t = THREE.MathUtils.smoothstep(stationT, delay, delay + 0.4);
-      slab.position.z = THREE.MathUtils.lerp(-80, 0, t);
-      const mat = slab.material as THREE.MeshStandardMaterial;
-      if (mat) mat.opacity = THREE.MathUtils.lerp(0, 1, t);
-    });
-  });
-
   return (
-    <group ref={groupRef} position={[5.5, -1, -10]}>
+    <group position={[0, -1, 0]}>
       {SLABS.map((slab, i) => (
-        <SlabUnit
-          key={i}
-          config={slab}
-          slabRef={(el: THREE.Mesh) => { slabRefs.current[i] = el; }}
-        />
+        <SlabUnit key={i} config={slab} index={i} />
       ))}
       <ConnectorSpine />
     </group>
@@ -99,30 +66,40 @@ export default function Station2Stack() {
 
 function SlabUnit({
   config,
-  slabRef,
+  index,
 }: {
   config: SlabConfig;
-  slabRef: (el: THREE.Mesh) => void;
+  index: number;
 }) {
   const matRef = useRef<THREE.MeshStandardMaterial>(null!);
+  const slabRef = useRef<THREE.Mesh>(null!);
 
   useFrame(({ clock }) => {
+    const t = clock.getElapsedTime();
+
+    // Pulsing emissive
     if (matRef.current) {
-      const t = clock.getElapsedTime();
       matRef.current.emissiveIntensity =
         config.emissiveIntensity +
         Math.sin(t * 1.1 + config.delayOffset * 12) * 0.35;
     }
+
+    // Subtle floating motion per slab
+    if (slabRef.current) {
+      slabRef.current.position.y =
+        config.y + Math.sin(t * 0.6 + index * 0.8) * 0.15;
+    }
   });
 
   return (
-    <group position={[0, config.y, 0]}>
+    <group>
       <RoundedBox
         ref={slabRef}
         args={[8.4, 1.5, 0.35]}
         radius={0.1}
         smoothness={4}
         castShadow
+        position={[0, config.y, 0]}
       >
         <meshStandardMaterial
           ref={matRef}
@@ -132,7 +109,7 @@ function SlabUnit({
           metalness={0.85}
           roughness={0.12}
           transparent
-          opacity={0}
+          opacity={0.92}
         />
       </RoundedBox>
 
@@ -141,10 +118,11 @@ function SlabUnit({
         intensity={25}
         distance={10}
         decay={2}
-        position={[0, 0, 1.2]}
+        position={[0, config.y, 1.2]}
       />
 
-      <mesh position={[4.28, 0, 0]}>
+      {/* Edge accent */}
+      <mesh position={[4.28, config.y, 0]}>
         <boxGeometry args={[0.02, 1.5, 0.35]} />
         <meshStandardMaterial
           color={config.emissive}

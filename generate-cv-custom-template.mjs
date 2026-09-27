@@ -102,13 +102,13 @@ function createTopBanner() {
       }),
       new Paragraph({
         children: [
-          new TextRun({ text: "FULL STACK & AI ENGINEER · DEVOPS SPECIALIST", bold: true, size: pt(8.5), color: "2563EB", font: "Arial" }),
+          new TextRun({ text: "FULL STACK & AI ENGINEER · CORE BANKING (CBS) · DEVOPS", bold: true, size: pt(8.5), color: "2563EB", font: "Arial" }),
         ],
         spacing: { before: pt(0), after: pt(1) },
       }),
       new Paragraph({
         children: [
-          new TextRun({ text: "Conception d'applications web scalables, d'architectures IA autonomes, de systèmes haute performance & workflows DevOps.", size: pt(8), color: COLOR_MUTED, font: "Arial" }),
+          new TextRun({ text: "Conception d'applications web scalables, intégration Core Banking (Temenos & SYBU), architectures IA & systèmes haute performance.", size: pt(8), color: COLOR_MUTED, font: "Arial" }),
         ],
         spacing: { before: pt(1), after: pt(0) },
       }),
@@ -187,11 +187,12 @@ function createTopBanner() {
 async function main() {
   const leftColumnContent = [
     createWideHeader("C O M P É T E N C E S"),
+    createBullet("CBS Temenos, CBS SYBU (Legacy), Monétique bancaire, CDR (Centrale des Risques), Centrale des Impayés, Déploiement Data Center", "Core Banking:"),
+    createBullet("SQL Server (T-SQL), Procédures stockées complexes, Indexation avancée (Clustered/Non-Clustered), Plans d'exécution, PostgreSQL, Redis", "SQL Server & BDD:"),
+    createBullet("ASP.NET Core (C# .NET 8), Node.js, NestJS, Express.js, APIs RESTful, GraphQL, JWT, RBAC, Microservices", "Backend:"),
     createBullet("React.js, Next.js (App Router), TypeScript, Tailwind CSS, Three.js, WebGL, Framer Motion, Figma", "Frontend:"),
-    createBullet("ASP.NET Core (C# .NET 8), Node.js, NestJS, Express.js, APIs RESTful, GraphQL, JWT, RBAC", "Backend:"),
     createBullet("LLM APIs (OpenAI, Claude, Gemini), Prompt Chaining, Pipelines RAG, Vector Embeddings, Agents IA, Python, LangChain", "AI & ML:"),
     createBullet("Docker, Orchestration, CI/CD (GitHub Actions), Linux Admin, Vercel, Azure, Git", "DevOps:"),
-    createBullet("SQL Server, PostgreSQL, Redis, Modélisation relationnelle, Procédures stockées", "Bases de Données:"),
 
     createWideHeader("L A N G U E S"),
     createBullet("Natif", "Arabe:"),
@@ -199,12 +200,13 @@ async function main() {
     createBullet("Professionnel (B2/C1)", "Anglais:"),
 
     createWideHeader("A P T I T U D E S"),
-    createBullet("Architecture Système & Systèmes Financiers Bancaires"),
+    createBullet("Architecture Core Banking & Systèmes Financiers"),
+    createBullet("Optimisation SQL Server, Indexation & Plans d'Exécution"),
+    createBullet("Déploiement Haute Disponibilité en Data Center"),
     createBullet("Intelligence Artificielle, RAG & Agents Autonomes"),
-    createBullet("Graphismes WebGL 3D & Interfaces Immersives"),
-    createBullet("High Performance Computing & Cloud Automation"),
 
     createWideHeader("F O R M A T I O N"),
+    ...createEducationItem("FORMATION CBS & DATA CENTER", "Installation & Déploiement d'Environnements CBS en Data Center Bancaire", "2025 - 2026"),
     ...createEducationItem("LICENCE EN INFORMATIQUE", "Université Ferhat Abbas (UFAS 1)", "2022 - 2025"),
     ...createEducationItem("CERTIFICATION GOOGLE AI PROFESSIONAL", "Google · Coursera (Credential ID: YS26JC7JM5VP)", "2026"),
     ...createEducationItem("FORMATION INGÉNIEUR DEVOPS", "Institut de Formation Professionnelle", "2025"),
@@ -213,12 +215,11 @@ async function main() {
   const rightColumnContent = [
     createWideHeader("E X P É R I E N C E S  P R O F E S S I O N N E L L E S"),
 
-    ...createJobHeader("INGÉNIEUR DÉVELOPPEUR FULL STACK", "BNH - Banque Nationale d'Habitat", "Septembre 2025 - Aujourd'hui", "Alger"),
-    createBullet("Développement et intégration de sous-systèmes monétiques pour le traitement sécurisé des transactions et cartes bancaires.", "Système Monétique & Flux:"),
-    createBullet("Conception de modules de reporting automatisés et tableaux de bord décisionnels pour la direction bancaire.", "Reporting & Dashboards:"),
-    createBullet("Architecture et développement du système national de centralisation, d'analyse et de contrôle des risques de crédit bancaires.", "Central des Risques:"),
-    createBullet("Développement de la solution d'identification, de suivi et de gestion automatisée des créances et impayés bancaires.", "Centrale des Impayés:"),
-    createBullet("APIs hautes performances en ASP.NET Core (C#), sécurité JWT/RBAC, procédures stockées complexes et requêtes optimisées.", "APIs C# & SQL Server:"),
+    ...createJobHeader("INGÉNIEUR CORE BANKING & DÉVELOPPEUR FULL STACK", "BNH - Banque Nationale d'Habitat", "Septembre 2025 - Aujourd'hui", "Alger"),
+    createBullet("Participation active aux travaux de transition et d'implémentation du nouveau Core Banking System Temenos ; analyse des spécifications techniques et fonctionnelles, cartographie des flux d'interfaçage et intégration des modules périphériques.", "Modernisation & CBS Temenos:"),
+    createBullet("Développement et interconnexion d’applications connexes permettant d’exploiter et d’échanger les données avec l'ancien Core Banking (SYBU) : flux monétiques (cartes, DAB), Centrale des Risques (CDR) et Centrale des Impayés.", "Satellites CBS SYBU (Monétique, CDR, Impayés):"),
+    createBullet("Conception de procédures stockées complexes, fonctions et transactions ACID ; stratégies d'indexation avancée (index clusterisés, non-clusterisés et composites) pour requêtes volumineuses ; analyse fine des plans d'exécution (Execution Plans) et tuning de performance sur les flux financiers.", "SQL Server (T-SQL) & Performance:"),
+    createBullet("Architecture d'APIs sécurisées en ASP.NET Core (C# .NET 8), sécurité JWT/RBAC et interconnexion haute performance avec les bases SQL Server.", "APIs C# (.NET 8):"),
 
     ...createJobHeader("INGÉNIEUR PROJET SAAS & AI", "Projets Indépendants & Innovation", "2024 - 2026", "Alger / En Ligne"),
     createBullet("PC LABS (Simulateur Matériel PC): Application web interactive de simulation d'assemblage et compatibilité matérielle en temps réel avec calcul de consommation et détection de bottlenecks (Next.js 15, TypeScript, Tailwind CSS). Demo: pc-labs-app.vercel.app", "Simulateur Matériel PC:"),

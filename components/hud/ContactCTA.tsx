@@ -24,7 +24,7 @@ export default function ContactCTA() {
         }}
       >
         {[
-          { label: "GH", href: "https://github.com/", title: "GitHub — Mahdi Djeridi", color: "var(--emerald-500)" },
+          { label: "GH", href: "https://github.com/djeridimahdi10-creator", title: "GitHub — Mahdi Djeridi", color: "var(--emerald-500)" },
           { label: "LI", href: "https://www.linkedin.com/in/mehdi-djeridi-7b924b2a4", title: "LinkedIn — Mahdi Djeridi", color: "var(--violet-400)" },
           { label: "✉", href: "https://mail.google.com/mail/?view=cm&to=djeridimahdi10@gmail.com", title: "Email Mahdi", color: "var(--sky-500)" },
         ].map((s) => (

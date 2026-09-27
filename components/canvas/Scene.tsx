@@ -1,6 +1,6 @@
 "use client";
 
-import { Suspense, useEffect, useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import { Canvas } from "@react-three/fiber";
 import { AdaptiveDpr } from "@react-three/drei";
 import * as THREE from "three";
@@ -9,25 +9,91 @@ import { usePortfolio } from "@/components/context/PortfolioContext";
 import CameraRig from "./CameraRig";
 import Environment from "./Environment";
 import PostProcessing from "./PostProcessing";
+import CentralCore from "./CentralCore";
+import OrbitalStreams from "./OrbitalStreams";
+import { getStationPosition, getStationYRotation } from "./OrbitalLayout";
+
 import Station1Hero from "@/components/stations/Station1Hero";
 import Station2Stack from "@/components/stations/Station2Stack";
 import Station3DataFlow from "@/components/stations/Station3DataFlow";
 import Station4Projects from "@/components/stations/Station4Projects";
 import Station5About from "@/components/stations/Station5About";
+import Station6Timeline from "@/components/stations/Station6Timeline";
+import Station7Contact from "@/components/stations/Station7Contact";
 import LoadingScreen from "@/components/hud/LoadingScreen";
 
+/**
+ * Orbital Station Wrapper
+ * Positions a station on the ring at the correct angle and rotation.
+ */
+function OrbitalStation({
+  index,
+  children,
+}: {
+  index: number;
+  children: React.ReactNode;
+}) {
+  const pos = getStationPosition(index);
+  const rotY = getStationYRotation(index);
+
+  return (
+    <group position={pos} rotation={[0, rotY, 0]}>
+      {children}
+    </group>
+  );
+}
+
+/**
+ * Scene Content — All 3D elements composed inside the Canvas.
+ *
+ * Layout:
+ *   - CentralCore at origin (always visible)
+ *   - OrbitalStreams connecting stations on the ring
+ *   - 7 Stations placed on the orbital ring
+ *   - Environment (fog, stars, grid, debris)
+ *   - CameraRig (orbital camera + cursor light)
+ *   - PostProcessing (bloom, chromatic aberration, vignette)
+ */
 function SceneContent() {
   return (
     <>
       <CameraRig />
       <Environment />
 
-      {/* 3D Stations */}
-      <Station1Hero />
-      <Station2Stack />
-      <Station3DataFlow />
-      <Station4Projects />
-      <Station5About />
+      {/* Central Gravity Core — always at origin */}
+      <CentralCore />
+
+      {/* Orbital ring track + particle streams */}
+      <OrbitalStreams />
+
+      {/* 7 Stations on the orbital ring (ordered by chapter) */}
+      <OrbitalStation index={0}>
+        <Station1Hero />
+      </OrbitalStation>
+
+      <OrbitalStation index={1}>
+        <Station5About />
+      </OrbitalStation>
+
+      <OrbitalStation index={2}>
+        <Station2Stack />
+      </OrbitalStation>
+
+      <OrbitalStation index={3}>
+        <Station3DataFlow />
+      </OrbitalStation>
+
+      <OrbitalStation index={4}>
+        <Station4Projects />
+      </OrbitalStation>
+
+      <OrbitalStation index={5}>
+        <Station6Timeline />
+      </OrbitalStation>
+
+      <OrbitalStation index={6}>
+        <Station7Contact />
+      </OrbitalStation>
 
       <PostProcessing />
     </>
@@ -66,7 +132,7 @@ export default function Scene() {
             fov: 60,
             near: 0.1,
             far: 600,
-            position: [0, 2, 12],
+            position: [44, 3.5, 0], // Start on the outer orbit ring
           }}
           gl={{
             antialias: true,

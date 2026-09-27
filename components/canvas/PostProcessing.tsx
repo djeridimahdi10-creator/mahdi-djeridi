@@ -11,25 +11,25 @@ export default function PostProcessing() {
 
   return (
     <EffectComposer multisampling={0}>
-      {/* Bloom — makes emissive materials glow */}
+      {/* Bloom — enhanced for orbital glow trails */}
       <Bloom
-        intensity={isLight ? 0.6 : 1.2}
-        luminanceThreshold={0.2}
-        luminanceSmoothing={0.8}
+        intensity={isLight ? 0.7 : 1.5}
+        luminanceThreshold={0.15}
+        luminanceSmoothing={0.9}
       />
 
       {/* Chromatic Aberration — subtle RGB split at edges */}
       <ChromaticAberration
-        offset={new THREE.Vector2(0.0008, 0.0008)}
+        offset={new THREE.Vector2(0.001, 0.001)}
         blendFunction={BlendFunction.NORMAL}
         radialModulation={true}
-        modulationOffset={0.6}
+        modulationOffset={0.5}
       />
 
-      {/* Vignette — Disabled in light mode so background stays pure white */}
+      {/* Vignette — cinematic framing */}
       <Vignette
-        offset={0.3}
-        darkness={isLight ? 0.0 : 0.7}
+        offset={0.25}
+        darkness={isLight ? 0.0 : 0.75}
         blendFunction={BlendFunction.NORMAL}
       />
     </EffectComposer>

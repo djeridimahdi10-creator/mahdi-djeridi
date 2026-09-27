@@ -68,13 +68,13 @@ export default function NavigationDots() {
               fontFamily: "var(--font-mono)",
               fontSize: "0.62rem",
               letterSpacing: "0.15em",
-              color: "rgba(0,245,255,0.8)",
+              color: "var(--sky-400)",
               textTransform: "uppercase",
-              background: "rgba(2,2,10,0.75)",
+              background: "var(--glass-bg)",
               backdropFilter: "blur(10px)",
               padding: "4px 10px",
               borderRadius: "4px",
-              border: "1px solid rgba(0,245,255,0.18)",
+              border: "1px solid var(--glass-border)",
             }}
           >
             {station.label}

@@ -213,7 +213,13 @@ export const translations: Record<Language, TranslationSchema> = {
       subheading: "Key technical growth, certifications, and project deliveries.",
       milestones: [
         {
-          year: "2024 - Present",
+          year: "2025 - Present",
+          title: "Core Banking System (CBS) & Full-Stack Engineer — BNH",
+          org: "Banking Systems & Data Center Infrastructure",
+          desc: "Driving transition towards Temenos CBS, developing satellite banking systems on legacy CBS SYBU (Monetics, Risk Central CDR, Payment Defaults), and Data Center deployments.",
+        },
+        {
+          year: "2024 - 2026",
           title: "Lead AI & Full-Stack Engineer",
           org: "Autonomous Systems & Cloud Architecture",
           desc: "Architecting autonomous multi-agent pipelines, Next.js web applications, and enterprise microservices.",
@@ -356,7 +362,13 @@ export const translations: Record<Language, TranslationSchema> = {
       subheading: "Évolution technique, certifications professionnelles et livraison de projets d'envergure.",
       milestones: [
         {
-          year: "2024 - Présent",
+          year: "2025 - Présent",
+          title: "Ingénieur Core Banking (CBS) & Full-Stack — BNH",
+          org: "Systèmes Bancaires & Infrastructure Data Center",
+          desc: "Transition vers le Core Banking System Temenos, développement de systèmes satellites connectés au CBS SYBU (Monétique, CDR, Impayés) et déploiement Data Center.",
+        },
+        {
+          year: "2024 - 2026",
           title: "Lead Ingénieur IA & Full-Stack",
           org: "Systèmes Autonomes & Architecture Cloud",
           desc: "Conception de pipelines multi-agents autonomes, d'applications web Next.js et de microservices d'entreprise.",

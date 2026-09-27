@@ -5,7 +5,7 @@ import { useFrame } from "@react-three/fiber";
 import { Float } from "@react-three/drei";
 import * as THREE from "three";
 
-const PARTICLE_COUNT = 16000;
+const PARTICLE_COUNT = 10000;
 
 /**
  * Creates golden-ratio spherical particle cloud with gradient colors
@@ -20,7 +20,7 @@ function createHeroParticles(count: number) {
     const inclination = Math.acos(1 - 2 * t);
     const azimuth = PHI * i;
 
-    const radius = 2.0 + Math.sin(i * 0.02) * 1.2 + Math.random() * 0.8;
+    const radius = 3.6 + Math.sin(i * 0.02) * 1.8 + Math.random() * 1.2;
     const x = radius * Math.sin(inclination) * Math.cos(azimuth);
     const y = radius * Math.cos(inclination) * 1.8;
     const z = radius * Math.sin(inclination) * Math.sin(azimuth);
@@ -29,13 +29,13 @@ function createHeroParticles(count: number) {
     positions[i * 3 + 1] = y;
     positions[i * 3 + 2] = z;
 
-    // Cyan (#00f5ff) -> Purple (#7c3aed) -> Green (#10b981) gradient
-    const mixFactor = (y + 3) / 6;
+    // Cyan → Purple → Emerald radiant gradient
+    const mixFactor = (y + 4) / 8;
     const color = new THREE.Color();
     if (mixFactor < 0.5) {
-      color.lerpColors(new THREE.Color("#00f5ff"), new THREE.Color("#7c3aed"), mixFactor * 2);
+      color.lerpColors(new THREE.Color("#00f5ff"), new THREE.Color("#8b5cf6"), mixFactor * 2);
     } else {
-      color.lerpColors(new THREE.Color("#7c3aed"), new THREE.Color("#10b981"), (mixFactor - 0.5) * 2);
+      color.lerpColors(new THREE.Color("#8b5cf6"), new THREE.Color("#10b981"), (mixFactor - 0.5) * 2);
     }
 
     colors[i * 3] = color.r;
@@ -54,44 +54,42 @@ function OrbitingTechNodes() {
 
   useFrame((_, delta) => {
     if (groupRef.current) {
-      groupRef.current.rotation.y += delta * 0.25;
+      groupRef.current.rotation.y += delta * 0.35;
+      groupRef.current.rotation.z += delta * 0.12;
     }
   });
 
   const nodes = [
-    { angle: 0, color: "#00f5ff", label: "AI AGENTS" },
-    { angle: Math.PI / 2, color: "#7c3aed", label: "SECURITY" },
+    { angle: 0, color: "#00f5ff", label: "AI SYSTEMS" },
+    { angle: Math.PI / 2, color: "#a855f7", label: "APP SECURITY" },
     { angle: Math.PI, color: "#10b981", label: "DEVOPS" },
-    { angle: (3 * Math.PI) / 2, color: "#ef4444", label: "SYSTEMS" },
+    { angle: (3 * Math.PI) / 2, color: "#fbbf24", label: "FULL STACK" },
   ];
 
   return (
     <group ref={groupRef}>
       {nodes.map((node, i) => {
-        const radius = 4.8;
+        const radius = 5.2;
         const x = Math.cos(node.angle) * radius;
         const z = Math.sin(node.angle) * radius;
 
         return (
-          <group key={i} position={[x, Math.sin(i * 2) * 0.4, z]}>
-            {/* Small glowing wireframe node cube */}
+          <group key={i} position={[x, Math.sin(i * 2) * 0.6, z]}>
             <mesh>
-              <boxGeometry args={[0.35, 0.35, 0.35]} />
+              <boxGeometry args={[0.55, 0.55, 0.55]} />
               <meshStandardMaterial
                 color={node.color}
                 emissive={node.color}
-                emissiveIntensity={2.5}
+                emissiveIntensity={3.5}
                 wireframe
               />
             </mesh>
-
-            {/* Inner solid core */}
             <mesh>
-              <sphereGeometry args={[0.12, 16, 16]} />
+              <octahedronGeometry args={[0.22]} />
               <meshStandardMaterial
-                color={node.color}
+                color="#ffffff"
                 emissive={node.color}
-                emissiveIntensity={4.0}
+                emissiveIntensity={5.0}
               />
             </mesh>
           </group>
@@ -102,34 +100,23 @@ function OrbitingTechNodes() {
 }
 
 /**
- * Multi-Axis Concentric Cyber Rings
+ * Triple-axis Gyroscope Astrolabe rings
  */
-function CyberConcentricRings() {
-  const ring1Ref = useRef<THREE.Mesh>(null!);
-  const ring2Ref = useRef<THREE.Mesh>(null!);
-  const ring3Ref = useRef<THREE.Mesh>(null!);
+function GyroscopeCore() {
+  const ring1 = useRef<THREE.Mesh>(null!);
+  const ring2 = useRef<THREE.Mesh>(null!);
+  const ring3 = useRef<THREE.Mesh>(null!);
 
-  useFrame(({ clock }) => {
-    const t = clock.getElapsedTime();
-    if (ring1Ref.current) {
-      ring1Ref.current.rotation.x = t * 0.35;
-      ring1Ref.current.rotation.y = t * 0.2;
-    }
-    if (ring2Ref.current) {
-      ring2Ref.current.rotation.y = -t * 0.25;
-      ring2Ref.current.rotation.z = t * 0.3;
-    }
-    if (ring3Ref.current) {
-      ring3Ref.current.rotation.x = -t * 0.2;
-      ring3Ref.current.rotation.z = -t * 0.15;
-    }
+  useFrame((_, delta) => {
+    if (ring1.current) ring1.current.rotation.x += delta * 0.8;
+    if (ring2.current) ring2.current.rotation.y += delta * 0.6;
+    if (ring3.current) ring3.current.rotation.z += delta * 0.7;
   });
 
   return (
-    <>
-      {/* Outer Cyan Ring */}
-      <mesh ref={ring1Ref}>
-        <torusGeometry args={[3.6, 0.02, 16, 120]} />
+    <group>
+      <mesh ref={ring1}>
+        <torusGeometry args={[2.5, 0.035, 16, 100]} />
         <meshStandardMaterial
           color="#00f5ff"
           emissive="#00f5ff"
@@ -138,40 +125,35 @@ function CyberConcentricRings() {
           opacity={0.85}
         />
       </mesh>
-
-      {/* Middle Neon Purple Ring */}
-      <mesh ref={ring2Ref}>
-        <torusGeometry args={[4.2, 0.015, 16, 120]} />
+      <mesh ref={ring2} rotation={[Math.PI / 4, 0, 0]}>
+        <torusGeometry args={[2.9, 0.03, 16, 100]} />
         <meshStandardMaterial
-          color="#7c3aed"
-          emissive="#7c3aed"
+          color="#a855f7"
+          emissive="#a855f7"
           emissiveIntensity={3.0}
+          transparent
+          opacity={0.8}
+        />
+      </mesh>
+      <mesh ref={ring3} rotation={[0, Math.PI / 4, Math.PI / 3]}>
+        <torusGeometry args={[3.3, 0.025, 16, 100]} />
+        <meshStandardMaterial
+          color="#10b981"
+          emissive="#10b981"
+          emissiveIntensity={2.5}
           transparent
           opacity={0.7}
         />
       </mesh>
-
-      {/* Inner Emerald Pulse Ring */}
-      <mesh ref={ring3Ref}>
-        <torusGeometry args={[2.8, 0.018, 16, 120]} />
-        <meshStandardMaterial
-          color="#10b981"
-          emissive="#10b981"
-          emissiveIntensity={2.8}
-          transparent
-          opacity={0.75}
-        />
-      </mesh>
-    </>
+    </group>
   );
 }
 
 /**
- * Station1Hero: Ultra-Pro Quantum AI Core centered directly behind Hero Text
+ * Station1Hero: Particle nebula cloud with orbiting tech nodes and gyroscope core.
  */
 export default function Station1Hero() {
   const mainGroupRef = useRef<THREE.Group>(null!);
-  const icosaRef = useRef<THREE.Mesh>(null!);
   const particlesRef = useRef<THREE.Points>(null!);
   const materialRef = useRef<THREE.PointsMaterial>(null!);
 
@@ -183,11 +165,10 @@ export default function Station1Hero() {
     return { geometry: geo, basePositions: positions };
   }, []);
 
-  useFrame((state, delta) => {
+  useFrame((state) => {
     const t = state.clock.getElapsedTime();
     const { pointer } = state;
 
-    // Interactive subtle mouse tracking / parallax tilt
     if (mainGroupRef.current) {
       mainGroupRef.current.rotation.y = THREE.MathUtils.lerp(
         mainGroupRef.current.rotation.y,
@@ -201,43 +182,35 @@ export default function Station1Hero() {
       );
     }
 
-    // Core Icosahedron pulse
-    if (icosaRef.current) {
-      icosaRef.current.rotation.y = -t * 0.4;
-      icosaRef.current.rotation.z = t * 0.2;
-      (icosaRef.current.material as THREE.MeshStandardMaterial).emissiveIntensity =
-        1.8 + Math.sin(t * 1.8) * 0.6;
-    }
-
-    // Dynamic Particle pulsation
+    // Dynamic particle pulsation
     if (particlesRef.current) {
       const posAttr = particlesRef.current.geometry.attributes.position as THREE.BufferAttribute;
-      for (let i = 0; i < PARTICLE_COUNT; i += 12) {
+      for (let i = 0; i < PARTICLE_COUNT; i += 8) {
         const bx = basePositions[i * 3];
         const by = basePositions[i * 3 + 1];
         const bz = basePositions[i * 3 + 2];
         posAttr.setXYZ(
           i,
-          bx + Math.sin(t * 1.4 + i * 0.04) * 0.05,
-          by + Math.cos(t * 1.0 + i * 0.03) * 0.07,
-          bz + Math.sin(t * 1.2 + i * 0.05) * 0.05
+          bx + Math.sin(t * 1.5 + i * 0.04) * 0.08,
+          by + Math.cos(t * 1.2 + i * 0.03) * 0.1,
+          bz + Math.sin(t * 1.3 + i * 0.05) * 0.08
         );
       }
       posAttr.needsUpdate = true;
     }
 
     if (materialRef.current) {
-      materialRef.current.size = 0.055 + Math.sin(t * 1.2) * 0.015;
+      materialRef.current.size = 0.18 + Math.sin(t * 1.2) * 0.04;
     }
   });
 
   return (
-    <group ref={mainGroupRef} position={[0, 0.4, 2]}>
-      {/* ── Particle Swarm Cloud ── */}
+    <group ref={mainGroupRef} position={[0, 0.4, 0]}>
+      {/* Particle Swarm Cloud */}
       <points ref={particlesRef} geometry={geometry}>
         <pointsMaterial
           ref={materialRef}
-          size={0.055}
+          size={0.18}
           sizeAttenuation
           transparent
           opacity={0.9}
@@ -247,41 +220,41 @@ export default function Station1Hero() {
         />
       </points>
 
-      {/* ── Central Quantum Geodesic Core ── */}
-      <Float speed={1.5} floatIntensity={0.3} rotationIntensity={0.2}>
-        <mesh ref={icosaRef}>
-          <icosahedronGeometry args={[1.5, 2]} />
+      {/* Central 3D Geodesic Crystal */}
+      <Float speed={1.5} floatIntensity={0.25} rotationIntensity={0.2}>
+        <mesh>
+          <icosahedronGeometry args={[1.6, 1]} />
           <meshStandardMaterial
-            color="#002b40"
+            color="#001830"
             emissive="#00f5ff"
-            emissiveIntensity={2.0}
+            emissiveIntensity={2.5}
             wireframe
+            transparent
+            opacity={0.8}
+          />
+        </mesh>
+        <mesh>
+          <sphereGeometry args={[0.9, 24, 24]} />
+          <meshStandardMaterial
+            color="#ffffff"
+            emissive="#38bdf8"
+            emissiveIntensity={4.0}
             transparent
             opacity={0.7}
           />
         </mesh>
       </Float>
 
-      {/* ── Inner Plasma Sphere ── */}
-      <mesh>
-        <sphereGeometry args={[0.9, 32, 32]} />
-        <meshStandardMaterial
-          color="#0d1b2a"
-          emissive="#0088ff"
-          emissiveIntensity={3.0}
-          transparent
-          opacity={0.55}
-        />
-      </mesh>
+      {/* Rotating Gyroscope Rings */}
+      <GyroscopeCore />
 
-      {/* ── Concentric Rings & Orbiting Nodes ── */}
-      <CyberConcentricRings />
+      {/* Orbiting Tech Nodes */}
       <OrbitingTechNodes />
 
-      {/* ── High-Intensity Volumetric Lights Framing Text ── */}
-      <pointLight color="#00f5ff" intensity={90} distance={28} decay={2} position={[0, 0, 2]} />
-      <pointLight color="#7c3aed" intensity={65} distance={24} decay={2} position={[0, -2.5, 1]} />
-      <pointLight color="#10b981" intensity={45} distance={20} decay={2} position={[0, 2.5, 0]} />
+      {/* High-intensity station lights */}
+      <pointLight color="#00f5ff" intensity={120} distance={28} decay={2} position={[0, 0, 3]} />
+      <pointLight color="#a855f7" intensity={80} distance={24} decay={2} position={[0, -3, 2]} />
+      <pointLight color="#10b981" intensity={70} distance={22} decay={2} position={[0, 3, 1]} />
     </group>
   );
 }

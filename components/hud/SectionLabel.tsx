@@ -38,7 +38,7 @@ export default function SectionLabel() {
 
   return (
     <>
-      {/* Bottom-left: Journey progress */}
+      {/* Bottom-left: Journey progress & Orbital Radar */}
       <div
         className="section-label-progress"
         style={{
@@ -48,9 +48,119 @@ export default function SectionLabel() {
           zIndex: 20,
           display: "flex",
           flexDirection: "column",
-          gap: "8px",
+          gap: "10px",
+          pointerEvents: "auto",
         }}
       >
+        {/* Orbital Radar Minimap */}
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: "12px",
+            padding: "8px 12px",
+            borderRadius: "14px",
+            background: "var(--glass-bg)",
+            backdropFilter: "blur(14px)",
+            border: "1px solid var(--glass-border)",
+            boxShadow: "0 4px 20px rgba(0,0,0,0.15)",
+          }}
+        >
+          <svg width="44" height="44" viewBox="0 0 64 64" style={{ overflow: "visible" }}>
+            {/* Outer orbit circle */}
+            <circle
+              cx="32"
+              cy="32"
+              r="24"
+              fill="none"
+              stroke="rgba(56, 189, 248, 0.25)"
+              strokeWidth="1"
+              strokeDasharray="2 3"
+            />
+            {/* Center gravity core */}
+            <circle
+              cx="32"
+              cy="32"
+              r="3.5"
+              fill="#38bdf8"
+              opacity="0.85"
+            />
+            {/* 7 Station nodes */}
+            {sections.map((_, i) => {
+              const a = (i / 7) * Math.PI * 2 - Math.PI / 2;
+              const sx = 32 + 24 * Math.cos(a);
+              const sy = 32 + 24 * Math.sin(a);
+              const isActive = current === i;
+              return (
+                <circle
+                  key={i}
+                  cx={sx}
+                  cy={sy}
+                  r={isActive ? 3.5 : 2}
+                  fill={isActive ? "#00f5ff" : "rgba(255,255,255,0.4)"}
+                  stroke={isActive ? "#38bdf8" : "none"}
+                  strokeWidth="1.5"
+                  style={{ cursor: "pointer", transition: "all 0.2s ease" }}
+                  onClick={() => {
+                    const totalH = document.documentElement.scrollHeight - window.innerHeight;
+                    window.scrollTo({ top: (i / (sections.length - 1)) * totalH, behavior: "smooth" });
+                  }}
+                />
+              );
+            })}
+            {/* Camera angle indicator blip */}
+            {(() => {
+              const camAngle = scrollProgress * Math.PI * 2 - Math.PI / 2;
+              const bx = 32 + 24 * Math.cos(camAngle);
+              const by = 32 + 24 * Math.sin(camAngle);
+              return (
+                <g>
+                  <line
+                    x1="32"
+                    y1="32"
+                    x2={bx}
+                    y2={by}
+                    stroke="rgba(0, 245, 255, 0.6)"
+                    strokeWidth="1.2"
+                  />
+                  <circle
+                    cx={bx}
+                    cy={by}
+                    r="4.5"
+                    fill="none"
+                    stroke="#00f5ff"
+                    strokeWidth="1.8"
+                  />
+                </g>
+              );
+            })()}
+          </svg>
+
+          <div style={{ display: "flex", flexDirection: "column", gap: "2px" }}>
+            <span
+              style={{
+                fontFamily: "var(--font-mono)",
+                fontSize: "0.62rem",
+                color: "var(--sky-400)",
+                letterSpacing: "0.14em",
+                fontWeight: 700,
+              }}
+            >
+              ORBITAL RADAR
+            </span>
+            <span
+              style={{
+                fontFamily: "var(--font-mono)",
+                fontSize: "0.55rem",
+                color: "var(--text-dim)",
+                letterSpacing: "0.1em",
+              }}
+            >
+              STATION {current + 1} / 7 ACTIVE
+            </span>
+          </div>
+        </div>
+
         <AnimatePresence mode="wait">
           <motion.div
             key={current}
@@ -83,8 +193,8 @@ export default function SectionLabel() {
 
         {/* Progress track */}
         <div style={{
-          width: "120px",
-          height: "1.5px",
+          width: "140px",
+          height: "2px",
           background: "var(--glass-border)",
           borderRadius: "1px",
           overflow: "hidden",

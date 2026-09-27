@@ -48,12 +48,46 @@ const CERTIFICATIONS = [
     ],
     desc: "Completed an intensive professional formation in DevOps engineering covering the full lifecycle of modern software delivery — from containerization and CI/CD automation to cloud infrastructure management and production monitoring.",
   },
+  {
+    id: "cbs-datacenter-formation",
+    title: "Core Banking (CBS) & Data Center Deployment Formation",
+    issuer: "Banking Infrastructure Training · 2025 – 2026",
+    credentialId: null,
+    link: null,
+    color: "var(--emerald-500)",
+    date: "2025 – 2026",
+    badgeStyle: {
+      background: "linear-gradient(135deg, #10b981, #059669)",
+      letter: "C",
+      boxShadow: "0 4px 16px rgba(16,185,129,0.3)",
+    },
+    skills: [
+      "Core Banking Systems (Temenos & SYBU)",
+      "Data Center Environment Installation",
+      "High Availability & Clustered Infrastructure",
+      "Monetics & Payment Flows",
+      "Central Risk (CDR) & Credit Regulations",
+    ],
+    desc: "Specialized training on installing, configuring, and operating Core Banking System (CBS) environments within secure enterprise Data Centers. Covers application tier deployment, database clustering, high availability, failover mechanisms, and network security compliance.",
+  },
 ];
 
 const MILESTONES = [
   {
     period: "2025 — PRESENT",
-    role: "AI Manipulation & Integration",
+    role: "Core Banking System (CBS) & Full-Stack Engineer — BNH",
+    domain: "Banking & Financial Infrastructure",
+    highlights: [
+      "Transition & implementation of the modern Core Banking System Temenos: technical analysis, interface mapping, and peripheral module integration.",
+      "Engineering satellite applications connected to legacy CBS SYBU: Monetics (cards & transactions), Risk Central (CDR), and Payment Default Central.",
+      "Architected secure high-performance APIs in ASP.NET Core (C# .NET 8) and optimized SQL Server procedures for banking operations.",
+      "Trained in end-to-end installation and deployment of Core Banking environments in secure Data Centers.",
+    ],
+    color: "var(--sky-500)",
+  },
+  {
+    period: "2025 — PRESENT",
+    role: "AI Systems & Autonomous Agent Engineering",
     domain: "Artificial Intelligence",
     highlights: [
       "Completed Google AI Professional Certificate — mastering AI agent development and LLM integration.",
@@ -64,11 +98,11 @@ const MILESTONES = [
   },
   {
     period: "2025",
-    role: "DevOps Engineering Formation",
+    role: "DevOps & Data Center Infrastructure Formation",
     domain: "Infrastructure & Automation",
     highlights: [
-      "Completed professional DevOps formation covering Docker, CI/CD pipelines, and cloud deployment.",
-      "Automated build and delivery workflows reducing deployment time and eliminating manual errors.",
+      "Completed specialized training on deploying Core Banking environments inside high-availability Data Centers.",
+      "Professional DevOps formation covering Docker, CI/CD pipelines, Linux administration, and cloud deployment.",
       "Set up production monitoring, alerting systems, and zero-downtime deployment strategies.",
     ],
     color: "var(--violet-400)",
@@ -82,7 +116,7 @@ const MILESTONES = [
       "Built and launched Aura Bags — a full B2B industrial packaging portal with admin panel and order tracking.",
       "Developed scalable full-stack applications using Next.js, React, TypeScript, NestJS, and SQL databases.",
     ],
-    color: "var(--sky-500)",
+    color: "var(--gold-400)",
   },
 ];
 

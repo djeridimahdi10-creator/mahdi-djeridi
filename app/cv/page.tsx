@@ -5,7 +5,7 @@ export default function CVPage() {
       <div className="w-full max-w-4xl bg-slate-800/80 backdrop-blur border border-slate-700 rounded-2xl p-4 mb-6 flex flex-wrap items-center justify-between gap-4 shadow-xl">
         <div>
           <h1 className="text-xl font-bold text-white tracking-wide">CV — Mahdi Djeridi</h1>
-          <p className="text-xs text-slate-400">Full Stack & AI Engineer · DevOps Specialist — Conception d'applications web, architectures IA & systèmes haute performance</p>
+          <p className="text-xs text-slate-400">Full Stack & AI Engineer · Core Banking (CBS Temenos & SYBU) · DevOps — Conception d'applications web, intégration bancaire & architectures IA</p>
         </div>
         <div className="flex flex-wrap items-center gap-3">
           <a

@@ -40,6 +40,10 @@ function buildTubeCurves(): THREE.CatmullRomCurve3[] {
   ];
 }
 
+/**
+ * Station3DataFlow: Data pipeline visualization with tube geometry.
+ * Positioned at local origin; Scene.tsx handles orbital placement.
+ */
 export default function Station3DataFlow() {
   const groupRef = useRef<THREE.Group>(null!);
   const systemsRef = useRef<ReturnType<typeof createDataFlowSystem>[]>([]);
@@ -79,7 +83,7 @@ export default function Station3DataFlow() {
   });
 
   return (
-    <group position={[-6, 0, -20]}>
+    <group position={[0, 0, 0]}>
       {/* Translucent tubes */}
       <group ref={groupRef}>
         {tubes.map(({ tubeGeo }, i) => (

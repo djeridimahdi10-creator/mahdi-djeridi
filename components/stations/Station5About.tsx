@@ -5,9 +5,13 @@ import { useFrame } from "@react-three/fiber";
 import { Float, RoundedBox, useTexture } from "@react-three/drei";
 import * as THREE from "three";
 
+/**
+ * Station5About: Profile hologram, terminal panel, and identity cards.
+ * Positioned at local origin; Scene.tsx handles orbital placement.
+ */
 export default function Station5About() {
   return (
-    <group position={[0, 0.5, -50]}>
+    <group position={[0, 0.5, 0]}>
       {/* 3D Holographic Portrait */}
       <Float speed={1.2} rotationIntensity={0.2} floatIntensity={0.25} position={[-3.5, 3.8, 0.5]}>
         <ProfileHologram3D />
