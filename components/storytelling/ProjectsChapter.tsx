@@ -227,6 +227,68 @@ const SHOWCASE_PROJECTS: ShowcaseProject[] = [
       deployment: { label: { en: "System Reliability", fr: "Fiabilité Système" }, value: "99.9% Uptime Verified" },
     },
   },
+  {
+    id: "zain-agency",
+    code: "PRJ-04 · LIVE APP",
+    badge: { en: "PREMIUM TRAVEL AGENCY · LIVE", fr: "AGENCE DE VOYAGE PREMIUM · EN LIGNE" },
+    title: "Zain Agency",
+    shortTitle: "Zain Agency",
+    tagline: {
+      en: "Premium Travel Agency & Booking Platform",
+      fr: "Agence de Voyage Premium & Plateforme de Réservation",
+    },
+    category: {
+      en: "Multilingual Travel Portal · Hajj & Omra · Client Booking System · Admin Dashboard",
+      fr: "Portail Voyage Multilingue · Hajj & Omra · Système de Réservation · Tableau de Bord Admin",
+    },
+    overview: {
+      en: "Architected and deployed Zain Agency — a full-scale premium travel agency platform for Algeria. Features a multilingual booking interface (AR/FR/EN), Hajj & Omra package management, airline ticketing, hotel reservations, visa processing, client portal with QR code tracking, and a comprehensive admin dashboard.",
+      fr: "Conception et déploiement de Zain Agency — une plateforme complète d'agence de voyage premium pour l'Algérie. Comprend une interface multilingue (AR/FR/EN), gestion des packages Hajj & Omra, billetterie aérienne, réservation d'hôtels, traitement de visas et un portail client avec suivi par QR code.",
+    },
+    color: "#c8a45c",
+    glowColor: "rgba(200, 164, 92, 0.28)",
+    link: "https://zain-agency.vercel.app/fr",
+    image: "/projects/zain-agency.png",
+    status: { en: "LIVE PLATFORM · MULTILINGUAL", fr: "PLATEFORME ACTIVE · MULTILINGUE" },
+    technologies: ["Next.js 15", "TypeScript", "CSS Modules", "Vercel", "i18n", "QR Tracking"],
+    keyHighlights: [
+      { en: "Multilingual Interface AR/FR/EN with i18n Routing", fr: "Interface multilingue AR/FR/EN avec routage i18n" },
+      { en: "Hajj & Omra Package Management System", fr: "Système de gestion des packages Hajj & Omra" },
+      { en: "Client Portal with QR Code Booking Tracker", fr: "Portail client avec suivi de réservation par QR code" },
+      { en: "Full Admin Dashboard & Booking Management", fr: "Tableau de bord admin complet et gestion des réservations" },
+    ],
+    architectureFeatures: [
+      {
+        icon: "🌍",
+        title: { en: "i18n Multi-Route Architecture", fr: "Architecture Multi-Routes i18n" },
+        desc: {
+          en: "Dynamic locale routing supporting Arabic (RTL), French, and English with server-side language detection and persistent preference.",
+          fr: "Routage dynamique par locale supportant l'arabe (RTL), le français et l'anglais avec détection côté serveur.",
+        },
+      },
+      {
+        icon: "✈️",
+        title: { en: "Full-Service Booking Engine", fr: "Moteur de Réservation Complet" },
+        desc: {
+          en: "Integrated pipeline for flights, hotels, Saharan transport, visa applications, and Hajj & Omra group packages.",
+          fr: "Pipeline intégré pour vols, hôtels, transport saharien, visas et packages Hajj & Omra collectifs.",
+        },
+      },
+      {
+        icon: "🔐",
+        title: { en: "Admin & Client Portals", fr: "Portails Admin & Client" },
+        desc: {
+          en: "Dual-portal system with role-based access — admin manages bookings & inventory, clients track reservations via QR codes.",
+          fr: "Système à double portail avec accès par rôle — admin gère les réservations, clients suivent via QR codes.",
+        },
+      },
+    ],
+    telemetry: {
+      perf: { label: { en: "Page Load Speed", fr: "Vitesse de Chargement" }, value: "< 1.8s · Edge CDN", badge: "A" },
+      architecture: { label: { en: "Locale Support", fr: "Support de Langues" }, value: "AR (RTL) · FR · EN" },
+      deployment: { label: { en: "Platform Status", fr: "Statut de la Plateforme" }, value: "Live Production · Vercel" },
+    },
+  },
 ];
 
 type ConsoleTab = "overview" | "architecture" | "telemetry";
@@ -639,7 +701,7 @@ export default function ProjectsChapter() {
                     border: "1px solid var(--glass-border)",
                   }}
                 >
-                  SLOT 0{activeIndex + 1}/03
+                  SLOT 0{activeIndex + 1}/04
                 </span>
               </div>
 

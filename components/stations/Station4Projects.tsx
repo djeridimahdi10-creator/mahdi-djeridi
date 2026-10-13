@@ -47,6 +47,16 @@ export const PROJECTS_DATA: ProjectData[] = [
     hexColor: 0x10b981,
     link: "https://mahdi-gym.vercel.app/",
   },
+  {
+    id: 3,
+    code: "PRJ-04 · LIVE APP",
+    title: "Zain Agency",
+    subtitle: "Premium Travel Agency & Booking Platform",
+    image: "/projects/zain-agency.png",
+    color: "#c8a45c",
+    hexColor: 0xc8a45c,
+    link: "https://zain-agency.vercel.app/fr",
+  },
 ];
 
 const CAROUSEL_RADIUS = 6.2;
@@ -173,6 +183,7 @@ export default function Station4Projects() {
       <pointLight color="#00f5ff" intensity={60} distance={25} decay={2} position={[0, 2, 0]} />
       <pointLight color="#fbbf24" intensity={40} distance={20} decay={2} position={[-4, 1, 3]} />
       <pointLight color="#10b981" intensity={40} distance={20} decay={2} position={[4, 1, -3]} />
+      <pointLight color="#c8a45c" intensity={40} distance={20} decay={2} position={[0, 1, 5]} />
     </group>
   );
 }
