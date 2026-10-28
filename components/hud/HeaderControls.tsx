@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { usePortfolio } from "@/components/context/PortfolioContext";
 
 export default function HeaderControls() {
-  const { language, setLanguage, theme, setTheme, t } = usePortfolio();
+  const { language, setLanguage, theme, setTheme, t, openCvModal } = usePortfolio();
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("ch-hero");
   const [hoveredNav, setHoveredNav] = useState<string | null>(null);
@@ -283,11 +283,10 @@ export default function HeaderControls() {
 
           {/* ── Action Suite & Controls ── */}
           <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-            {/* Direct CV Download Pill */}
-            <motion.a
-              href="/djeridi-mahdi-cv.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
+            {/* Direct CV Modal Opener Pill */}
+            <motion.button
+              type="button"
+              onClick={openCvModal}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="desktop-cv-btn"
@@ -303,7 +302,6 @@ export default function HeaderControls() {
                 fontSize: "0.7rem",
                 fontWeight: 600,
                 color: "var(--sky-400)",
-                textDecoration: "none",
                 letterSpacing: "0.04em",
                 cursor: "pointer",
                 transition: "all 0.25s ease",
@@ -316,13 +314,13 @@ export default function HeaderControls() {
                 e.currentTarget.style.borderColor = "rgba(56, 189, 248, 0.28)";
                 e.currentTarget.style.boxShadow = "none";
               }}
-              title="Download Resume (PDF)"
+              title={isFr ? "Sélectionner & Télécharger CV (3D)" : "Choose & Download Resume (3D)"}
             >
               <span>CV</span>
               <svg width="10" height="10" viewBox="0 0 12 12" fill="none">
                 <path d="M2.5 9.5L9.5 2.5M9.5 2.5H4.5M9.5 2.5V7.5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
-            </motion.a>
+            </motion.button>
 
             {/* Segmented Sliding Language Toggle */}
             <div
@@ -655,11 +653,13 @@ export default function HeaderControls() {
                   gap: "12px",
                 }}
               >
-                {/* Download CV */}
-                <a
-                  href="/djeridi-mahdi-cv.pdf"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                {/* Download CV Modal */}
+                <button
+                  type="button"
+                  onClick={() => {
+                    setMenuOpen(false);
+                    openCvModal();
+                  }}
                   className="btn-primary"
                   style={{
                     display: "flex",
@@ -668,15 +668,16 @@ export default function HeaderControls() {
                     gap: "8px",
                     padding: "10px",
                     borderRadius: "10px",
-                    textDecoration: "none",
                     fontSize: "0.85rem",
+                    cursor: "pointer",
+                    width: "100%",
                   }}
                 >
-                  <span>{isFr ? "Télécharger CV (PDF)" : "Download Resume (PDF)"}</span>
+                  <span>{isFr ? "Consulter les CVs (3D)" : "View Resumes (3D)"}</span>
                   <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
                     <path d="M2.5 9.5L9.5 2.5M9.5 2.5H4.5M9.5 2.5V7.5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
                   </svg>
-                </a>
+                </button>
 
                 {/* Social & Switchers */}
                 <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: "8px" }}>

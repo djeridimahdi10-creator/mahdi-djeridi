@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mahdi Djeridi — DevOps Engineer CV</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@500;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #0f172a;
+      --primary-light: #1e293b;
+      --accent: #0d9488;
+      --accent-dark: #0f766e;
+      --accent-soft: #f0fdfa;
+      --accent-cyan: #0284c7;
+      --text-main: #1e293b;
+      --text-muted: #475569;
+      --text-light: #64748b;
+      --border: #cbd5e1;
+      --bg-pill: #f1f5f9;
+      --card-bg: #f8fafc;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      color: var(--text-main);
+      background-color: #f1f5f9;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    .cv-container {
+      width: 210mm;
+      margin: 20px auto;
+      background: #ffffff;
+      box-shadow: 0 10px 35px rgba(15, 23, 42, 0.12);
+    }
+
+    .cv-page {
+      width: 210mm;
+      min-height: 297mm;
+      height: 297mm;
+      padding: 24mm 22mm;
+      position: relative;
+      background: #ffffff;
+      page-break-after: always;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: hidden;
+    }
+
+    .cv-page:last-child {
+      page-break-after: avoid;
+    }
+
+    /* Page Header */
+    .header {
+      display: grid;
+      grid-template-columns: 100px 1fr auto;
+      gap: 18px;
+      align-items: center;
+      padding-bottom: 14px;
+      border-bottom: 2px solid var(--primary);
+      margin-bottom: 14px;
+    }
+
+    .profile-photo {
+      width: 95px;
+      height: 95px;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: center 20%;
+      border: 3px solid #ffffff;
+      box-shadow: 0 4px 14px rgba(13, 148, 136, 0.25), 0 0 0 2px var(--accent);
+    }
+
+    .header-info h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 24px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      color: var(--primary);
+      text-transform: uppercase;
+      line-height: 1.15;
+    }
+
+    .header-info .title-badge {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.8px;
+      color: var(--accent-dark);
+      text-transform: uppercase;
+      margin-top: 3px;
+      margin-bottom: 4px;
+    }
+
+    .header-info .tagline {
+      font-size: 9.3px;
+      color: var(--text-muted);
+      line-height: 1.35;
+      font-weight: 500;
+    }
+
+    .contact-info {
+      text-align: right;
+      font-size: 9.5px;
+      color: var(--text-muted);
+      line-height: 1.55;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 5px;
+      margin-bottom: 2px;
+    }
+
+    .contact-item a {
+      color: var(--accent-dark);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .contact-item svg {
+      width: 12px;
+      height: 12px;
+      fill: currentColor;
+      color: var(--accent);
+    }
+
+    /* Section Styles */
+    .section {
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.8px;
+      color: var(--primary);
+      margin-bottom: 8px;
+      padding-bottom: 3px;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      left: 0;
+      width: 32px;
+      height: 2px;
+      background: var(--accent);
+    }
+
+    .summary-text {
+      font-size: 9.5px;
+      line-height: 1.5;
+      color: var(--text-main);
+      text-align: justify;
+    }
+
+    /* Skills Grid */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 7px 14px;
+    }
+
+    .skill-category {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 6px 9px;
+    }
+
+    .skill-cat-title {
+      font-size: 9.5px;
+      font-weight: 700;
+      color: var(--primary);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 3px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .skill-cat-title span.dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      display: inline-block;
+    }
+
+    .skill-tags {
+      font-size: 9px;
+      color: var(--text-muted);
+      line-height: 1.42;
+    }
+
+    .skill-tags strong {
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    /* Experience Items */
+    .job-card {
+      margin-bottom: 10px;
+    }
+
+    .job-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 3px;
+    }
+
+    .job-title {
+      font-size: 10.5px;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .job-company {
+      font-size: 9.5px;
+      font-weight: 600;
+      color: var(--accent-dark);
+    }
+
+    .job-meta {
+      text-align: right;
+      font-size: 9px;
+      font-weight: 600;
+      color: var(--text-light);
+    }
+
+    .job-location {
+      font-style: italic;
+    }
+
+    ul.bullet-list {
+      list-style: none;
+      padding-left: 0;
+      margin-top: 4px;
+    }
+
+    ul.bullet-list li {
+      position: relative;
+      padding-left: 13px;
+      font-size: 9.2px;
+      line-height: 1.45;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+      text-align: justify;
+    }
+
+    ul.bullet-list li::before {
+      content: '▸';
+      position: absolute;
+      left: 0;
+      top: 0px;
+      color: var(--accent);
+      font-weight: bold;
+      font-size: 10px;
+    }
+
+    ul.bullet-list li strong {
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    /* Projects Grid */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+    }
+
+    .project-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--accent);
+      border-radius: 6px;
+      padding: 7px 9px;
+    }
+
+    .project-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 2px;
+    }
+
+    .project-name {
+      font-size: 9.5px;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .project-badge {
+      font-size: 8px;
+      font-weight: 700;
+      color: #0d9488;
+      background: #f0fdfa;
+      border: 1px solid #99f6e4;
+      padding: 1px 5px;
+      border-radius: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* Explicit project URL row for paper readability */
+    .project-url-row {
+      font-size: 8.4px;
+      margin-bottom: 3px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      background: #f0fdfa;
+      border: 1px solid #ccfbf1;
+      padding: 2px 5px;
+      border-radius: 4px;
+    }
+
+    .project-url-row .url-label {
+      font-weight: 700;
+      color: var(--accent-dark);
+      font-size: 8px;
+      text-transform: uppercase;
+    }
+
+    .project-url-row a.project-url {
+      color: var(--accent-dark);
+      text-decoration: underline;
+      font-weight: 600;
+      font-family: monospace;
+      font-size: 8.5px;
+    }
+
+    .project-tech {
+      font-size: 8.3px;
+      font-weight: 600;
+      color: var(--accent-dark);
+      margin-bottom: 2px;
+      line-height: 1.25;
+    }
+
+    .project-desc {
+      font-size: 8.6px;
+      color: var(--text-muted);
+      line-height: 1.35;
+      text-align: justify;
+    }
+
+    /* Education & Certifications */
+    .edu-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 7px 14px;
+    }
+
+    .edu-item {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 6px 9px;
+    }
+
+    .edu-degree {
+      font-size: 9.5px;
+      font-weight: 700;
+      color: var(--primary);
+      line-height: 1.25;
+    }
+
+    .edu-inst {
+      font-size: 8.8px;
+      color: var(--accent-dark);
+      font-weight: 600;
+      margin-top: 1px;
+    }
+
+    .edu-period {
+      font-size: 8.5px;
+      color: var(--text-light);
+      margin-top: 1px;
+    }
+
+    .edu-desc {
+      font-size: 8.5px;
+      color: var(--text-muted);
+      margin-top: 2px;
+      line-height: 1.35;
+    }
+
+    /* Languages & Additional */
+    .footer-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-top: 2px;
+    }
+
+    .lang-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 4px;
+    }
+
+    .lang-pill {
+      background: var(--bg-pill);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 3px 8px;
+      font-size: 8.8px;
+      font-weight: 600;
+      color: var(--primary);
+    }
+
+    .lang-pill span {
+      color: var(--accent-dark);
+      font-weight: 500;
+    }
+
+    .page-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 8px;
+      border-top: 1px solid var(--border);
+      font-size: 8px;
+      color: var(--text-light);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    @media print {
+      body {
+        background: transparent;
+        padding: 0;
+      }
+      .cv-container {
+        box-shadow: none;
+        margin: 0;
+        width: 100%;
+      }
+      .cv-page {
+        width: 100%;
+        height: 297mm;
+        box-shadow: none;
+        margin: 0;
+        padding: 20mm 20mm;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="cv-container">
+
+  <!-- ==================== PAGE 1 ==================== -->
+  <div class="cv-page">
+    <div>
+      <!-- Header -->
+      <header class="header">
+        <img src="profile.jpg" alt="Mahdi Djeridi" class="profile-photo">
+        <div class="header-info">
+          <h1>Mahdi Djeridi</h1>
+          <div class="title-badge">DevOps Engineer · CI/CD, Containerization & Infrastructure</div>
+          <div class="tagline">Docker · Kubernetes · HashiCorp Nomad · Jenkins · GitHub Actions · Portainer · Linux & Data Center</div>
+        </div>
+        <div class="contact-info">
+          <div class="contact-item">
+            <span>Algiers, Algeria</span>
+            <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 0 1 0-5 2.5 2.5 0 0 1 0 5z"/></svg>
+          </div>
+          <div class="contact-item">
+            <span>+213 555 65 13 30</span>
+            <svg viewBox="0 0 24 24"><path d="M6.62 10.79a15.053 15.053 0 0 0 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+          </div>
+          <div class="contact-item">
+            <a href="mailto:djeridimahdi10@gmail.com">djeridimahdi10@gmail.com</a>
+            <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+          </div>
+          <div class="contact-item">
+            <a href="https://linkedin.com/in/mehdi-djeridi-7b924b2a4" target="_blank">linkedin.com/in/mehdi-djeridi</a>
+            <svg viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 8.76a1.64 1.64 0 1 0-.02-3.28 1.64 1.64 0 0 0 .02 3.28m1.39 9.74v-8.37H5.07v8.37h2.78z"/></svg>
+          </div>
+          <div class="contact-item">
+            <a href="https://github.com/djeridimahdi10-creator" target="_blank">github.com/djeridimahdi10-creator</a>
+            <svg viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.1-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z"/></svg>
+          </div>
+          <div class="contact-item">
+            <a href="https://mahdi-djeridi-eight.vercel.app" target="_blank">mahdi-djeridi-eight.vercel.app</a>
+            <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+          </div>
+        </div>
+      </header>
+
+      <!-- Executive Summary -->
+      <section class="section">
+        <h2 class="section-title">Professional Summary</h2>
+        <p class="summary-text">
+          Dedicated <strong>DevOps Engineer</strong> with a strong <strong>Full-Stack Software Development foundation</strong>, specializing in the design, configuration, and automation of resilient <strong>CI/CD pipelines</strong>, containerized environments, and hybrid cloud/on-premise infrastructures. Practical expertise spanning <strong>Docker multi-stage containerization</strong>, <strong>Kubernetes & HashiCorp Nomad orchestration</strong>, automated pipeline tooling (<strong>Jenkins, GitHub Actions</strong>), container fleet management via <strong>Portainer</strong>, and Linux server administration. Currently playing a key role in the new <strong>Core Banking System (Temenos CBS)</strong> project at BNH, implementing automated CI/CD workflows, staging environments, and high-availability Data Center deployments under rigorous banking standards. Combines a deep architectural understanding of codebases (Next.js, Node.js, C# .NET, SQL Server) with infrastructure automation to deliver zero-downtime releases and resilient systems.
+        </p>
+      </section>
+
+      <!-- Technical Skills Matrix -->
+      <section class="section">
+        <h2 class="section-title">Technical Expertise</h2>
+        <div class="skills-grid">
+          <div class="skill-category">
+            <div class="skill-cat-title"><span class="dot"></span> CI/CD & Automation Pipelines</div>
+            <div class="skill-tags">
+              <strong>Jenkins (Declarative & Scripted Pipelines)</strong>, <strong>GitHub Actions (Multi-Stage Workflows)</strong>, Automated Testing & Linting Gates, Build Optimization, Artifact Packaging, Release Management.
+            </div>
+          </div>
+
+          <div class="skill-category">
+            <div class="skill-cat-title"><span class="dot"></span> Containerization & Orchestration</div>
+            <div class="skill-tags">
+              <strong>Docker, Dockerfile Multi-Stage Optimization</strong>, Docker Compose, <strong>Portainer (Stack & Lifecycle Management)</strong>, <strong>Kubernetes (Deployments, Services, ConfigMaps, Ingress)</strong>, <strong>HashiCorp Nomad</strong>.
+            </div>
+          </div>
+
+          <div class="skill-category">
+            <div class="skill-cat-title"><span class="dot"></span> Infrastructure, Cloud & Data Center</div>
+            <div class="skill-tags">
+              <strong>Linux Server Admin (Ubuntu, Debian, CentOS)</strong>, Banking Data Center on-premise environments, <strong>Vercel Edge Global CDN</strong>, <strong>Microsoft Azure</strong>, Nginx (Reverse Proxy, Load Balancing, SSL/TLS 1.3), Bash scripting.
+            </div>
+          </div>
+
+          <div class="skill-category">
+            <div class="skill-cat-title"><span class="dot"></span> Full-Stack Developer Foundation</div>
+            <div class="skill-tags">
+              <strong>Node.js, TypeScript, Next.js 15, C# ASP.NET Core (.NET 8)</strong>, RESTful APIs, <strong>SQL Server (T-SQL, Query Plans)</strong>, PostgreSQL, Redis, Git branching (Trunk-based, GitFlow), OWASP Top 10.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Professional Experience (Part 1: BNH) -->
+      <section class="section">
+        <h2 class="section-title">Professional Experience</h2>
+
+        <div class="job-card">
+          <div class="job-header">
+            <div>
+              <div class="job-title">DevOps & Core Banking Systems Engineer</div>
+              <div class="job-company">BNH – Banque Nationale d'Habitat</div>
+            </div>
+            <div class="job-meta">
+              <div>Sept 2025 – Present</div>
+              <div class="job-location">Algiers, Algeria</div>
+            </div>
+          </div>
+
+          <ul class="bullet-list">
+            <li>
+              <strong>Core Banking CI/CD Pipeline Implementation (Temenos CBS):</strong> Actively driving the design, configuration, and optimization of automated <strong>CI/CD pipelines (Jenkins, GitHub Actions)</strong> for the new Core Banking System (Temenos); establishing automated quality gates (unit tests, security linting, build packaging) and seamless deployment promotion between development, testing, and pre-production banking environments.
+            </li>
+            <li>
+              <strong>Containerization & Portainer Management for Banking Satellites:</strong> Architected Docker container packaging for internal banking applications and peripheral services connected to legacy CBS (SYBU), including <strong>Monetics (Card & ATM Switch interfaces)</strong>, <strong>Centrale des Risques (CDR risk monitoring)</strong>, and <strong>Centrale des Impayés</strong>; deployed <strong>Portainer</strong> for unified container lifecycle monitoring, health checks, and rapid service rollback.
+            </li>
+            <li>
+              <strong>Banking Data Center Infrastructure & Environment Parity:</strong> Collaborated with infrastructure and network operations teams in provisioning and configuring high-availability on-premise environments; set up hardened <strong>Nginx reverse proxies</strong> with SSL/TLS termination, automated header hardening, and internal network segmentation protecting internal service tiers.
+            </li>
+            <li>
+              <strong>Release Engineering & Environment Troubleshooting:</strong> Managed release cycles, configuration baselines, and cross-environment synchronization (Dev / Staging / Prod); resolved critical environment discrepancies, network socket issues, and permission boundaries under strict banking security policies.
+            </li>
+            <li>
+              <strong>Full-Stack Collaboration & SQL Server Reliability:</strong> Leveraged software engineering expertise (ASP.NET Core C# .NET 8, Node.js) and in-depth <strong>SQL Server (T-SQL) execution plan diagnostics</strong> to assist application teams in resolving deadlocks, optimizing heavy transactional batch queries, and guaranteeing ACID consistency on financial databases.
+            </li>
+          </ul>
+        </div>
+      </section>
+    </div>
+
+    <!-- Page 1 Footer -->
+    <div class="page-footer">
+      <span>Mahdi Djeridi — DevOps Engineer CV</span>
+      <span>Page 1 / 2</span>
+      <span>djeridimahdi10@gmail.com</span>
+    </div>
+  </div>
+
+
+  <!-- ==================== PAGE 2 ==================== -->
+  <div class="cv-page">
+    <div>
+      <!-- Freelance & Project Experience -->
+      <section class="section">
+        <h2 class="section-title">Professional Experience (Continued)</h2>
+
+        <div class="job-card">
+          <div class="job-header">
+            <div>
+              <div class="job-title">DevOps & Cloud Infrastructure Engineer (Freelance / Independent)</div>
+              <div class="job-company">SaaS, Industrial & Commercial Platforms</div>
+            </div>
+            <div class="job-meta">
+              <div>2024 – Present</div>
+              <div class="job-location">Algiers / Remote</div>
+            </div>
+          </div>
+          <ul class="bullet-list">
+            <li>
+              <strong>End-to-End Infrastructure Automation:</strong> Engineered and automated deployment lifecycles for multiple web applications and SaaS platforms, taking complete ownership of Dockerization, CI/CD pipeline automation, reverse proxy configuration, DNS management, and monitoring.
+            </li>
+            <li>
+              <strong>Full-Stack Systems Synergy:</strong> Bridged the gap between application development and operations by developing both application code (TypeScript, Next.js, Node.js, databases) and automated infrastructure stacks, accelerating deployment velocity from days to minutes.
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Practical DevOps & Project Work -->
+      <section class="section">
+        <h2 class="section-title">DevOps & Infrastructure Projects</h2>
+        <div class="projects-grid">
+          <!-- Aura Bags DevOps -->
+          <div class="project-card">
+            <div class="project-head">
+              <span class="project-name">Aura Bags — Containerized B2B Platform</span>
+              <span class="project-badge">Live App</span>
+            </div>
+            <div class="project-url-row">
+              <span class="url-label">🌐 URL:</span>
+              <a href="https://bags-factory.vercel.app" target="_blank" class="project-url">https://bags-factory.vercel.app</a>
+            </div>
+            <div class="project-tech">Docker · Docker Compose · Portainer · GitHub Actions · Nginx · Linux</div>
+            <div class="project-desc">
+              Containerized a multi-tier industrial manufacturing platform (Next.js frontend, Node.js/Express API, PostgreSQL database). Authored multi-stage Dockerfiles utilizing Alpine base images, slashing production image sizes by 60%. Configured GitHub Actions CI/CD pipelines for automated testing, container build, and deployment. Managed container health, persistent volumes, and Let's Encrypt SSL via Portainer and Nginx.
+            </div>
+          </div>
+
+          <!-- PC Labs Edge -->
+          <div class="project-card">
+            <div class="project-head">
+              <span class="project-name">PC Labs — Edge Infrastructure & CI/CD</span>
+              <span class="project-badge">Live App</span>
+            </div>
+            <div class="project-url-row">
+              <span class="url-label">🌐 URL:</span>
+              <a href="https://pc-labs-app.vercel.app" target="_blank" class="project-url">https://pc-labs-app.vercel.app</a>
+            </div>
+            <div class="project-tech">Vercel Edge CDN · GitHub Actions · CI Quality Gates · Telemetry</div>
+            <div class="project-desc">
+              Architected edge delivery pipeline for a high-performance hardware compatibility engine. Integrated automated CI build verification and bundle size gates on GitHub Actions with dynamic preview environments per pull request. Configured edge caching and client-side performance telemetry, ensuring zero-latency constraint solving and sub-15ms UI responsiveness.
+            </div>
+          </div>
+
+          <!-- NutriSaaS Microservices -->
+          <div class="project-card">
+            <div class="project-head">
+              <span class="project-name">NutriSaaS — Multi-Service Orchestration</span>
+              <span class="project-badge">Live App</span>
+            </div>
+            <div class="project-url-row">
+              <span class="url-label">🌐 URL:</span>
+              <a href="https://mahdi-gym.vercel.app" target="_blank" class="project-url">https://mahdi-gym.vercel.app</a>
+            </div>
+            <div class="project-tech">Docker · Docker Compose · Microservices · Python · NestJS · Next.js</div>
+            <div class="project-desc">
+              Designed container topology isolating the web application, NestJS backend API, and Python AI vision/vector compute service across dedicated Docker bridge networks. Implemented persistent volume policies for vector index state, isolated container secrets, and health-check endpoints for automated recovery in the event of service degradation.
+            </div>
+          </div>
+
+          <!-- Zain Agency Infrastructure -->
+          <div class="project-card">
+            <div class="project-head">
+              <span class="project-name">Zain Agency — Production Infrastructure</span>
+              <span class="project-badge">Live App</span>
+            </div>
+            <div class="project-url-row">
+              <span class="url-label">🌐 URL:</span>
+              <a href="https://zain-agency.vercel.app/fr" target="_blank" class="project-url">https://zain-agency.vercel.app/fr</a>
+            </div>
+            <div class="project-tech">Next.js 15 · GitHub Actions · SSL/TLS 1.3 · DNS · Nginx</div>
+            <div class="project-desc">
+              Configured production cloud delivery for a high-traffic multilingual travel and booking platform. Implemented automated zero-downtime release pipelines with GitHub Actions, DNS routing, automated SSL/TLS certificate renewal, and security header hardening (HSTS, CSP, X-Frame-Options) to safeguard transactional client data.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Education & Formations -->
+      <section class="section">
+        <h2 class="section-title">Education & Professional Formations</h2>
+        <div class="edu-grid">
+          <div class="edu-item">
+            <div class="edu-degree">Formation Ingénieur DevOps</div>
+            <div class="edu-inst">Institut de Formation Professionnelle</div>
+            <div class="edu-period">2025 | Algiers, Algeria</div>
+            <div class="edu-desc">Comprehensive hands-on training in Docker containerization, Kubernetes cluster orchestration, HashiCorp Nomad scheduling, Jenkins CI/CD pipeline automation, and Linux server administration.</div>
+          </div>
+
+          <div class="edu-item">
+            <div class="edu-degree">Formation CBS & Data Center Deployment</div>
+            <div class="edu-inst">Banking Systems Infrastructure Division</div>
+            <div class="edu-period">2025 – 2026 | Algiers, Algeria</div>
+            <div class="edu-desc">Practical training on installation, network configuration, and deployment of Core Banking System (CBS) environments within on-premise Banking Data Centers.</div>
+          </div>
+
+          <div class="edu-item">
+            <div class="edu-degree">Licence en Informatique (Bachelor's Degree)</div>
+            <div class="edu-inst">Université Ferhat Abbas (UFAS 1)</div>
+            <div class="edu-period">2022 – 2025 | Sétif, Algeria</div>
+            <div class="edu-desc">Core curriculum in Systems Architecture, Operating Systems & Kernels, Networking Protocols (TCP/IP, HTTP/S, DNS), Databases, and Software Engineering.</div>
+          </div>
+
+          <div class="edu-item">
+            <div class="edu-degree">Google AI Professional Certificate</div>
+            <div class="edu-inst">Google · Coursera (ID: YS26JC7JM5VP)</div>
+            <div class="edu-period">2026 | Professional Credential</div>
+            <div class="edu-desc">Machine Learning architectures, generative models, vector embeddings, Prompt Engineering, and automated AI application engineering pipelines.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Languages & Strengths -->
+      <section class="section">
+        <div class="footer-row">
+          <div>
+            <h2 class="section-title">Languages</h2>
+            <div class="lang-pills">
+              <div class="lang-pill">Arabic: <span>Native</span></div>
+              <div class="lang-pill">French: <span>Fluent / Bilingual (C1)</span></div>
+              <div class="lang-pill">English: <span>Professional (B2/C1)</span></div>
+            </div>
+          </div>
+
+          <div>
+            <h2 class="section-title">Core DevOps Capabilities</h2>
+            <div class="lang-pills">
+              <div class="lang-pill">Automated CI/CD Pipelines</div>
+              <div class="lang-pill">Docker & Portainer Management</div>
+              <div class="lang-pill">Kubernetes & Nomad</div>
+              <div class="lang-pill">Banking Data Center & Parity</div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Page 2 Footer -->
+    <div class="page-footer">
+      <span>Mahdi Djeridi — DevOps Engineer CV</span>
+      <span>Page 2 / 2</span>
+      <span>djeridimahdi10@gmail.com</span>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>

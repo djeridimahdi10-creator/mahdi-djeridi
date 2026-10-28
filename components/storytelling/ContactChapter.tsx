@@ -76,7 +76,7 @@ const INQUIRY_TOPICS: InquiryTopic[] = [
 ];
 
 export default function ContactChapter() {
-  const { t, language } = usePortfolio();
+  const { t, language, openCvModal } = usePortfolio();
   const isFr = language === "fr";
 
   const [selectedTopic, setSelectedTopic] = useState<string>("ai-agents");
@@ -535,31 +535,35 @@ export default function ContactChapter() {
                 </motion.button>
               </div>
 
-              {/* Direct CV Download Link */}
+              {/* Direct 3D CV Modal Opener */}
               <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", paddingTop: "4px" }}>
-                <a
-                  href={CV_URL}
-                  download="Mahdi-Djeridi-CV.pdf"
+                <button
+                  type="button"
+                  onClick={openCvModal}
                   style={{
+                    background: "none",
+                    border: "none",
+                    padding: 0,
                     fontFamily: "var(--font-mono)",
                     fontSize: "0.68rem",
-                    color: "var(--text-dim)",
-                    textDecoration: "none",
+                    color: "var(--sky-400)",
                     display: "inline-flex",
                     alignItems: "center",
                     gap: "6px",
+                    cursor: "pointer",
                     transition: "color 0.2s ease",
                   }}
-                  onMouseEnter={(e) => (e.currentTarget.style.color = "var(--sky-400)")}
-                  onMouseLeave={(e) => (e.currentTarget.style.color = "var(--text-dim)")}
+                  onMouseEnter={(e) => (e.currentTarget.style.color = "#ffffff")}
+                  onMouseLeave={(e) => (e.currentTarget.style.color = "var(--sky-400)")}
                 >
                   <span>📄</span>
-                  <span>{isFr ? "Télécharger le CV Officiel (PDF)" : "Download Official Resume (PDF)"}</span>
-                  <span>↓</span>
-                </a>
+                  <span>{isFr ? "Choisir un CV (Full-Stack / DevOps 3D)" : "Choose Resume (Full-Stack / DevOps 3D)"}</span>
+                  <span>→</span>
+                </button>
 
                 <button
-                  onClick={() => setCvModalOpen(true)}
+                  type="button"
+                  onClick={openCvModal}
                   style={{
                     background: "none",
                     border: "none",
@@ -570,7 +574,7 @@ export default function ContactChapter() {
                     textDecoration: "underline",
                   }}
                 >
-                  {isFr ? "Aperçu du CV" : "Preview Resume"}
+                  {isFr ? "Aperçu 3D" : "3D Preview"}
                 </button>
               </div>
             </div>
@@ -931,32 +935,54 @@ export default function ContactChapter() {
           {/* Right: Quick Social Pills */}
           <div style={{ display: "flex", gap: "8px" }}>
             {[
-              { label: "GITHUB", href: GITHUB_URL, color: "var(--emerald-500)" },
-              { label: "LINKEDIN", href: LINKEDIN_URL, color: "var(--violet-400)" },
-              { label: "CV PDF", href: CV_URL, color: "var(--sky-400)", download: true },
+              { label: "GITHUB", href: GITHUB_URL, color: "var(--emerald-500)", action: undefined },
+              { label: "LINKEDIN", href: LINKEDIN_URL, color: "var(--violet-400)", action: undefined },
+              { label: "CV (3D)", href: "#", color: "var(--sky-400)", action: openCvModal },
             ].map((s) => (
-              <motion.a
-                key={s.label}
-                href={s.href}
-                target={s.download ? "_self" : "_blank"}
-                rel="noopener noreferrer"
-                download={s.download ? "Mahdi-Djeridi-CV.pdf" : undefined}
-                whileHover={{ scale: 1.08, y: -2 }}
-                whileTap={{ scale: 0.94 }}
-                style={{
-                  padding: "4px 10px",
-                  borderRadius: "6px",
-                  fontFamily: "var(--font-mono)",
-                  fontSize: "0.6rem",
-                  fontWeight: 600,
-                  color: s.color,
-                  textDecoration: "none",
-                  border: `1px solid ${s.color}35`,
-                  background: `${s.color}0e`,
-                }}
-              >
-                {s.label}
-              </motion.a>
+              s.action ? (
+                <motion.button
+                  key={s.label}
+                  type="button"
+                  onClick={s.action}
+                  whileHover={{ scale: 1.08, y: -2 }}
+                  whileTap={{ scale: 0.94 }}
+                  style={{
+                    padding: "4px 10px",
+                    borderRadius: "6px",
+                    fontFamily: "var(--font-mono)",
+                    fontSize: "0.6rem",
+                    fontWeight: 600,
+                    color: s.color,
+                    border: `1px solid ${s.color}35`,
+                    background: `${s.color}0e`,
+                    cursor: "pointer",
+                  }}
+                >
+                  {s.label}
+                </motion.button>
+              ) : (
+                <motion.a
+                  key={s.label}
+                  href={s.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  whileHover={{ scale: 1.08, y: -2 }}
+                  whileTap={{ scale: 0.94 }}
+                  style={{
+                    padding: "4px 10px",
+                    borderRadius: "6px",
+                    fontFamily: "var(--font-mono)",
+                    fontSize: "0.6rem",
+                    fontWeight: 600,
+                    color: s.color,
+                    textDecoration: "none",
+                    border: `1px solid ${s.color}35`,
+                    background: `${s.color}0e`,
+                  }}
+                >
+                  {s.label}
+                </motion.a>
+              )
             ))}
           </div>
         </motion.div>
@@ -1085,7 +1111,26 @@ export default function ContactChapter() {
                   FORMAT: PDF (OFFICIAL 2026 EDITION)
                 </div>
 
-                <div style={{ display: "flex", gap: "10px" }}>
+                <div style={{ display: "flex", gap: "10px", flexWrap: "wrap" }}>
+                  <a
+                    href="/cv"
+                    style={{
+                      fontFamily: "var(--font-heading)",
+                      fontSize: "0.8rem",
+                      fontWeight: 600,
+                      color: "var(--sky-400)",
+                      background: "rgba(56, 189, 248, 0.1)",
+                      border: "1px solid rgba(56, 189, 248, 0.3)",
+                      padding: "8px 16px",
+                      borderRadius: "999px",
+                      textDecoration: "none",
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "6px",
+                    }}
+                  >
+                    <span>Tous les Formats (/cv) →</span>
+                  </a>
                   <a
                     href={CV_URL}
                     download="Mahdi-Djeridi-CV.pdf"

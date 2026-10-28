@@ -24,6 +24,7 @@ export default function CameraRig() {
 
   useEffect(() => {
     const handleScroll = () => {
+      if (document.body.classList.contains("modal-open")) return;
       const scrollY = window.scrollY || window.pageYOffset || 0;
       const totalH = document.documentElement.scrollHeight - window.innerHeight;
       const p = totalH > 0 ? scrollY / totalH : 0;
@@ -31,6 +32,11 @@ export default function CameraRig() {
     };
 
     const handleMouseMove = (e: MouseEvent) => {
+      if (document.body.classList.contains("modal-open")) {
+        mouseOffset.current.x = 0;
+        mouseOffset.current.y = 0;
+        return;
+      }
       mouseOffset.current.x = (e.clientX / window.innerWidth - 0.5) * 2;
       mouseOffset.current.y = (e.clientY / window.innerHeight - 0.5) * 2;
     };

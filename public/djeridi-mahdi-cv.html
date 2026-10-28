@@ -3,341 +3,779 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mahdi Djeridi — CV Full Stack & AI Engineer</title>
+  <title>Mahdi Djeridi — CV Développeur Full-Stack</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --primary: #0f172a;
+      --primary-light: #1e293b;
+      --accent: #2563eb;
+      --accent-dark: #1d4ed8;
+      --accent-soft: #eff6ff;
+      --text-main: #1e293b;
+      --text-muted: #475569;
+      --text-light: #64748b;
+      --border: #e2e8f0;
+      --bg-pill: #f1f5f9;
+      --card-bg: #f8fafc;
+    }
+
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
+
     body {
-      font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      color: #0f172a;
-      background-color: #f7f9fa;
-      display: flex;
-      justify-content: center;
-      padding: 20px;
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      color: var(--text-main);
+      background-color: #f1f5f9;
+      line-height: 1.48;
+      -webkit-font-smoothing: antialiased;
       -webkit-print-color-adjust: exact;
-    }
-    .cv-page {
-      background: #ffffff;
-      width: 210mm;
-      min-height: 297mm;
-      padding: 34px 44px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-      position: relative;
+      print-color-adjust: exact;
     }
 
-    /* Top Header */
+    .cv-container {
+      width: 210mm;
+      margin: 20px auto;
+      background: #ffffff;
+      box-shadow: 0 10px 35px rgba(15, 23, 42, 0.12);
+    }
+
+    .cv-page {
+      width: 210mm;
+      min-height: 297mm;
+      height: 297mm;
+      padding: 20mm 20mm;
+      position: relative;
+      background: #ffffff;
+      page-break-after: always;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: hidden;
+    }
+
+    .cv-page:last-child {
+      page-break-after: avoid;
+    }
+
+    /* Page Header */
     .header {
       display: grid;
-      grid-template-columns: 1fr 140px 1fr;
+      grid-template-columns: 92px 1fr auto;
+      gap: 16px;
       align-items: center;
-      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 2px solid var(--primary);
+      margin-bottom: 12px;
     }
-    .name-block {
-      text-transform: uppercase;
-      font-size: 25px;
-      font-weight: 700;
-      letter-spacing: 5px;
-      line-height: 1.2;
-      color: #0f172a;
-    }
-    .name-subtitle {
-      font-size: 9px;
-      font-weight: 700;
-      letter-spacing: 1.8px;
-      color: #2563eb;
-      margin-top: 5px;
-      text-transform: uppercase;
-    }
-    .name-desc {
-      font-size: 8.5px;
-      font-weight: 500;
-      color: #475569;
-      margin-top: 4px;
-      line-height: 1.35;
-      text-transform: none;
-      letter-spacing: normal;
-    }
-    .photo-block {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
+
     .profile-photo {
-      width: 118px;
-      height: 118px;
+      width: 90px;
+      height: 90px;
       border-radius: 50%;
       object-fit: cover;
       object-position: center 20%;
-      box-shadow: 0 4px 14px rgba(0,0,0,0.12);
-      border: 1px solid #cbd5e1;
+      border: 3px solid #ffffff;
+      box-shadow: 0 4px 14px rgba(37, 99, 235, 0.2), 0 0 0 2px var(--accent);
     }
-    .contact-block {
-      text-align: right;
-    }
-    .contact-header {
-      font-size: 12px;
+
+    .header-info h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 23px;
       font-weight: 700;
-      letter-spacing: 4px;
+      letter-spacing: 1.5px;
+      color: var(--primary);
       text-transform: uppercase;
-      color: #0f172a;
-      margin-bottom: 6px;
+      line-height: 1.15;
     }
-    .contact-item {
-      font-size: 10px;
-      font-weight: 500;
-      color: #334155;
+
+    .header-info .title-badge {
+      display: inline-block;
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: 0.8px;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-top: 3px;
       margin-bottom: 3px;
-      line-height: 1.35;
     }
+
+    .header-info .tagline {
+      font-size: 9px;
+      color: var(--text-muted);
+      line-height: 1.35;
+      font-weight: 500;
+    }
+
+    .contact-info {
+      text-align: right;
+      font-size: 9px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 5px;
+      margin-bottom: 2px;
+    }
+
     .contact-item a {
-      color: #2563eb;
+      color: var(--accent-dark);
       text-decoration: none;
       font-weight: 600;
     }
 
-    .divider {
-      width: 100%;
-      height: 1.5px;
-      background-color: #0f172a;
-      margin-bottom: 18px;
+    .contact-item svg {
+      width: 11px;
+      height: 11px;
+      fill: currentColor;
+      color: var(--accent);
     }
 
-    /* Main Grid */
-    .main-grid {
-      display: grid;
-      grid-template-columns: 37% 63%;
-      gap: 28px;
+    /* Section Styles */
+    .section {
+      margin-bottom: 11px;
     }
 
-    /* Section Titles */
     .section-title {
-      font-size: 11px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 10.5px;
       font-weight: 700;
-      letter-spacing: 3.5px;
       text-transform: uppercase;
-      color: #0f172a;
-      margin-top: 14px;
-      margin-bottom: 8px;
-      white-space: nowrap;
-    }
-    .section-title.long-title {
-      letter-spacing: 2px;
-    }
-    .left-col .section-title:first-child,
-    .right-col .section-title:first-child {
-      margin-top: 0;
+      letter-spacing: 1.8px;
+      color: var(--primary);
+      margin-bottom: 7px;
+      padding-bottom: 3px;
+      border-bottom: 1px solid var(--border);
+      position: relative;
     }
 
-    /* Items */
-    .edu-item {
-      margin-bottom: 9px;
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      left: 0;
+      width: 30px;
+      height: 2px;
+      background: var(--accent);
     }
-    .edu-degree {
+
+    .summary-text {
+      font-size: 9.2px;
+      line-height: 1.48;
+      color: var(--text-main);
+      text-align: justify;
+    }
+
+    /* Skills Grid */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 6px 12px;
+    }
+
+    .skill-category {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 6px 8px;
+    }
+
+    .skill-cat-title {
+      font-size: 9.2px;
+      font-weight: 700;
+      color: var(--primary);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 3px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .skill-cat-title span.dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--accent);
+      display: inline-block;
+    }
+
+    .skill-tags {
+      font-size: 8.8px;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+
+    .skill-tags strong {
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    /* Experience Items */
+    .job-card {
+      margin-bottom: 8px;
+    }
+
+    .job-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 2px;
+    }
+
+    .job-title {
       font-size: 10px;
       font-weight: 700;
+      color: var(--primary);
+    }
+
+    .job-company {
+      font-size: 9.2px;
+      font-weight: 600;
+      color: var(--accent);
+    }
+
+    .job-meta {
+      text-align: right;
+      font-size: 8.8px;
+      font-weight: 600;
+      color: var(--text-light);
+    }
+
+    .job-location {
+      font-style: italic;
+    }
+
+    ul.bullet-list {
+      list-style: none;
+      padding-left: 0;
+      margin-top: 3px;
+    }
+
+    ul.bullet-list li {
+      position: relative;
+      padding-left: 12px;
+      font-size: 8.9px;
+      line-height: 1.44;
+      color: var(--text-muted);
+      margin-bottom: 3.5px;
+      text-align: justify;
+    }
+
+    ul.bullet-list li::before {
+      content: '▸';
+      position: absolute;
+      left: 0;
+      top: 0px;
+      color: var(--accent);
+      font-weight: bold;
+      font-size: 9.5px;
+    }
+
+    ul.bullet-list li strong {
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    /* Projects Grid */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 7px;
+    }
+
+    .project-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--accent);
+      border-radius: 6px;
+      padding: 6px 8px;
+    }
+
+    .project-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 2px;
+    }
+
+    .project-name {
+      font-size: 9.5px;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .project-badge {
+      font-size: 8px;
+      font-weight: 700;
+      color: #16a34a;
+      background: #f0fdf4;
+      border: 1px solid #bbf7d0;
+      padding: 1px 5px;
+      border-radius: 4px;
       text-transform: uppercase;
-      color: #0f172a;
+      letter-spacing: 0.5px;
+    }
+
+    /* Explicit project URL row for both paper & digital readability */
+    .project-url-row {
+      font-size: 8.4px;
+      margin-bottom: 3px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      background: #eff6ff;
+      border: 1px solid #dbeafe;
+      padding: 2px 5px;
+      border-radius: 4px;
+    }
+
+    .project-url-row .url-label {
+      font-weight: 700;
+      color: var(--accent-dark);
+      font-size: 8px;
+      text-transform: uppercase;
+    }
+
+    .project-url-row a.project-url {
+      color: var(--accent);
+      text-decoration: underline;
+      font-weight: 600;
+      font-family: monospace;
+      font-size: 8.5px;
+    }
+
+    .project-tech {
+      font-size: 8.3px;
+      font-weight: 600;
+      color: var(--accent-dark);
+      margin-bottom: 2px;
       line-height: 1.25;
     }
-    .edu-period {
-      font-size: 9.5px;
-      font-weight: 600;
-      color: #475569;
-      margin: 1.5px 0;
+
+    .project-desc {
+      font-size: 8.6px;
+      color: var(--text-muted);
+      line-height: 1.35;
+      text-align: justify;
     }
+
+    /* Education & Certifications */
+    .edu-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 6px 12px;
+    }
+
+    .edu-item {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 5px 8px;
+    }
+
+    .edu-degree {
+      font-size: 9.2px;
+      font-weight: 700;
+      color: var(--primary);
+      line-height: 1.2;
+    }
+
     .edu-inst {
-      font-size: 9.5px;
-      font-style: italic;
-      color: #64748b;
+      font-size: 8.5px;
+      color: var(--accent);
+      font-weight: 600;
+      margin-top: 1px;
+    }
+
+    .edu-period {
+      font-size: 8.2px;
+      color: var(--text-light);
+      margin-top: 1px;
+    }
+
+    .edu-desc {
+      font-size: 8.2px;
+      color: var(--text-muted);
+      margin-top: 1.5px;
       line-height: 1.3;
     }
 
-    /* Lists */
-    ul.skill-list, ul.simple-list {
-      list-style-type: disc;
-      padding-left: 15px;
-      font-size: 9.6px;
-      color: #1e293b;
-      line-height: 1.5;
-    }
-    ul.skill-list li, ul.simple-list li {
-      margin-bottom: 4px;
-    }
-    .skill-cat {
-      font-weight: 700;
-      color: #0f172a;
-    }
-
-    /* Right Column (Experiences) */
-    .job-item {
-      margin-bottom: 16px;
-    }
-    .job-title-row {
-      font-size: 11px;
-      font-weight: 700;
-      text-transform: uppercase;
-      color: #0f172a;
-      line-height: 1.25;
-    }
-    .job-period-row {
-      font-size: 9.5px;
-      font-style: italic;
-      font-weight: 600;
-      color: #475569;
+    /* Languages & Additional */
+    .footer-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
       margin-top: 2px;
-      margin-bottom: 6px;
-    }
-    ul.job-bullets {
-      list-style-type: disc;
-      padding-left: 15px;
-      font-size: 9.6px;
-      color: #1e293b;
-      line-height: 1.48;
-    }
-    ul.job-bullets li {
-      margin-bottom: 5px;
-    }
-    .bullet-bold {
-      font-weight: 700;
-      color: #0f172a;
     }
 
-    /* Print styles */
+    .lang-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin-top: 3px;
+    }
+
+    .lang-pill {
+      background: var(--bg-pill);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 2.5px 7px;
+      font-size: 8.4px;
+      font-weight: 600;
+      color: var(--primary);
+    }
+
+    .lang-pill span {
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    .page-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 6px;
+      border-top: 1px solid var(--border);
+      font-size: 8px;
+      color: var(--text-light);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
     @media print {
       body {
-        background: white;
+        background: transparent;
         padding: 0;
       }
-      .cv-page {
+      .cv-container {
         box-shadow: none;
+        margin: 0;
         width: 100%;
-        min-height: 100vh;
-        padding: 25px 30px;
+      }
+      .cv-page {
+        width: 100%;
+        height: 297mm;
+        box-shadow: none;
+        margin: 0;
+        padding: 18mm 18mm;
       }
     }
   </style>
 </head>
 <body>
+
+<div class="cv-container">
+
+  <!-- ==================== PAGE 1 ==================== -->
   <div class="cv-page">
-    <!-- Header -->
-    <div class="header">
-      <div class="name-block">
-        <div>M A H D I</div>
-        <div>D J E R I D I</div>
-        <div class="name-subtitle">Full Stack & AI Engineer · Core Banking (CBS) · DevOps</div>
-        <div class="name-desc">Conception d'applications web scalables, intégration Core Banking (Temenos & SYBU), architectures IA & systèmes haute performance.</div>
-      </div>
-      <div class="photo-block">
-        <img src="profile.jpg" alt="Mahdi Djeridi" class="profile-photo" />
-      </div>
-      <div class="contact-block">
-        <div class="contact-header">C O N T A C T</div>
-        <div class="contact-item">📞 0555 65 13 30 / +213 555 65 13 30</div>
-        <div class="contact-item">📧 djeridimahdi10@gmail.com</div>
-        <div class="contact-item">📍 Alger, Algérie</div>
-        <div class="contact-item">🌐 <a href="https://mahdi-djeridi-eight.vercel.app">mahdi-djeridi-eight.vercel.app</a></div>
-        <div class="contact-item">💼 linkedin.com/in/mehdi-djeridi-7b924b2a4</div>
-      </div>
+    <div>
+      <!-- Header -->
+      <header class="header">
+        <img src="profile.jpg" alt="Mahdi Djeridi" class="profile-photo">
+        <div class="header-info">
+          <h1>Mahdi Djeridi</h1>
+          <div class="title-badge">Ingénieur Full-Stack · Génie Logiciel & Systèmes</div>
+          <div class="tagline">Next.js 15 · React 19 · Node.js · ASP.NET Core (.NET 8) · SQL Server · Docker & CI/CD</div>
+        </div>
+        <div class="contact-info">
+          <div class="contact-item">
+            <span>Alger, Algérie</span>
+            <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 0 1 0-5 2.5 2.5 0 0 1 0 5z"/></svg>
+          </div>
+          <div class="contact-item">
+            <span>+213 555 65 13 30</span>
+            <svg viewBox="0 0 24 24"><path d="M6.62 10.79a15.053 15.053 0 0 0 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+          </div>
+          <div class="contact-item">
+            <a href="mailto:djeridimahdi10@gmail.com">djeridimahdi10@gmail.com</a>
+            <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+          </div>
+          <div class="contact-item">
+            <a href="https://linkedin.com/in/mehdi-djeridi-7b924b2a4" target="_blank">linkedin.com/in/mehdi-djeridi</a>
+            <svg viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 8.76a1.64 1.64 0 1 0-.02-3.28 1.64 1.64 0 0 0 .02 3.28m1.39 9.74v-8.37H5.07v8.37h2.78z"/></svg>
+          </div>
+          <div class="contact-item">
+            <a href="https://github.com/djeridimahdi10-creator" target="_blank">github.com/djeridimahdi10-creator</a>
+            <svg viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.1-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z"/></svg>
+          </div>
+          <div class="contact-item">
+            <a href="https://mahdi-djeridi-eight.vercel.app" target="_blank">mahdi-djeridi-eight.vercel.app</a>
+            <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+          </div>
+        </div>
+      </header>
+
+      <!-- Résumé Professionnel -->
+      <section class="section">
+        <h2 class="section-title">Profil Professionnel</h2>
+        <p class="summary-text">
+          <strong>Ingénieur Développeur Full-Stack</strong> avec plus de 3 ans d'expérience dans la conception, le développement et le déploiement d'applications web scalables, de systèmes satellites bancaires critiques et de microservices d'entreprise. Maîtrise avancée des frameworks frontend modernes (<strong>Next.js 15, React 19, TypeScript</strong>) et des architectures backend robustes (<strong>ASP.NET Core C# .NET 8, Node.js, NestJS</strong>), combinée à une expertise pointue en <strong>optimisation SQL Server (T-SQL, procédures stockées complexes, indexation et plans d'exécution)</strong>. Expérience concrète en <strong>automatisation DevOps</strong>, conteneurisation Docker, mise en place de pipelines CI/CD (Jenkins, GitHub Actions) et environnements haute disponibilité en Data Center. Actuellement impliqué activement dans la transition vers le nouveau <strong>Core Banking System (Temenos)</strong> et l'optimisation des pipelines CI/CD à la BNH.
+        </p>
+      </section>
+
+      <!-- Compétences Techniques -->
+      <section class="section">
+        <h2 class="section-title">Compétences Techniques</h2>
+        <div class="skills-grid">
+          <div class="skill-category">
+            <div class="skill-cat-title"><span class="dot"></span> Frontend & Ingénierie UI</div>
+            <div class="skill-tags">
+              <strong>Next.js 15 (App Router, Server Components)</strong>, React 19, TypeScript, JavaScript (ES6+), Tailwind CSS, Three.js / WebGL, Framer Motion, Design Systems adaptatifs.
+            </div>
+          </div>
+
+          <div class="skill-category">
+            <div class="skill-cat-title"><span class="dot"></span> Backend & Architectures Systèmes</div>
+            <div class="skill-tags">
+              <strong>ASP.NET Core (.NET 8 C#)</strong>, Node.js, NestJS, Express.js, APIs RESTful, GraphQL, Microservices, Domain-Driven Design (DDD), Clean Architecture, WebSockets.
+            </div>
+          </div>
+
+          <div class="skill-category">
+            <div class="skill-cat-title"><span class="dot"></span> Bases de Données & Performance</div>
+            <div class="skill-tags">
+              <strong>SQL Server (T-SQL)</strong>, Procédures stockées avancées, Indexation (Clustered / Non-Clustered), Plans d'exécution, Résolution de deadlocks, PostgreSQL, Redis.
+            </div>
+          </div>
+
+          <div class="skill-category">
+            <div class="skill-cat-title"><span class="dot"></span> DevOps, CI/CD & Déploiement</div>
+            <div class="skill-tags">
+              <strong>Docker, Docker Compose</strong>, Pipelines CI/CD (GitHub Actions, Jenkins), Portainer, Notions Kubernetes & Nomad, Admin Linux (Ubuntu/Debian), Nginx, Vercel Edge, Azure, Data Center.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Expérience Professionnelle (BNH) -->
+      <section class="section">
+        <h2 class="section-title">Expérience Professionnelle</h2>
+
+        <div class="job-card">
+          <div class="job-header">
+            <div>
+              <div class="job-title">Ingénieur Full-Stack & Systèmes Core Banking</div>
+              <div class="job-company">BNH – Banque Nationale d'Habitat</div>
+            </div>
+            <div class="job-meta">
+              <div>Septembre 2025 – Présent</div>
+              <div class="job-location">Alger, Algérie</div>
+            </div>
+          </div>
+
+          <ul class="bullet-list">
+            <li>
+              <strong>Modernisation Core Banking & Pipelines CI/CD :</strong> Participation active aux travaux de transition architecturale vers le nouveau Core Banking System (<strong>Temenos CBS</strong>) ; analyse des spécifications techniques et fonctionnelles d'intégration, cartographie des flux et collaboration avec les équipes infrastructure pour concevoir et optimiser les <strong>pipelines CI/CD automatisés (Jenkins, GitHub Actions)</strong> pour les tests, builds et déploiements sans interruption.
+            </li>
+            <li>
+              <strong>Intégration & Satellites CBS SYBU (Legacy) :</strong> Conception, développement et interconnexion d’applications full-stack satellitaires assurant les flux de données critiques avec l'ancien Core Banking (SYBU) :
+              <br>• <strong>Monétique :</strong> Modules de traitement sécurisé des flux cartes, interconnexion DAB/GAB et compensation financière.
+              <br>• <strong>Centrale des Risques (CDR) :</strong> Automatisation de l'agrégation, calculs de risques et reporting réglementaire central.
+              <br>• <strong>Centrale des Impayés :</strong> Solution de détection, suivi et gestion automatisée des créances, chèques impayés et alertes.
+            </li>
+            <li>
+              <strong>SQL Server (T-SQL) Haute Performance & Optimisation :</strong> Écriture de procédures stockées complexes, fonctions et transactions ACID sur volumes élevés ; élaboration de stratégies d'indexation avancée (index clusterisés, non-clusterisés et composites) réduisant la latence jusqu'à 60% ; analyse poussée des plans d'exécution et éradication des contentions et verrous (deadlocks).
+            </li>
+            <li>
+              <strong>Architecture d'APIs Sécurisées (.NET 8 & Node.js) :</strong> Développement de microservices et passerelles d'API en <strong>ASP.NET Core (C# .NET 8)</strong> et <strong>Node.js</strong> intégrant sécurité JWT/RBAC stricte, validation conforme OWASP et connectivité base de données optimisée.
+            </li>
+            <li>
+              <strong>Collaboration DevOps & Data Center :</strong> Conteneurisation d'outils bancaires internes sous Docker pour garantir la parité des environnements et déploiement sécurisé au sein du Data Center bancaire de la BNH.
+            </li>
+          </ul>
+        </div>
+      </section>
     </div>
 
-    <!-- Divider Line -->
-    <div class="divider"></div>
-
-    <!-- Main Body Columns -->
-    <div class="main-grid">
-      <!-- Left Column -->
-      <div class="left-col">
-        <div class="section-title">C O M P É T E N C E S</div>
-        <ul class="skill-list">
-          <li><span class="skill-cat">Core Banking & Finance:</span> CBS Temenos, CBS SYBU (Legacy), Monétique bancaire, CDR (Centrale des Risques), Centrale des Impayés, Déploiement Data Center</li>
-          <li><span class="skill-cat">SQL Server & BDD:</span> SQL Server (T-SQL), Procédures stockées complexes, Indexation avancée (Clustered/Non-Clustered), Plans d'exécution, PostgreSQL, Redis</li>
-          <li><span class="skill-cat">Backend & APIs:</span> ASP.NET Core (C# .NET 8), Node.js, NestJS, Express.js, APIs RESTful, GraphQL, JWT, RBAC, Microservices</li>
-          <li><span class="skill-cat">Frontend:</span> React.js, Next.js (App Router), TypeScript, Tailwind CSS, Three.js, WebGL, Framer Motion, Figma UI/UX</li>
-          <li><span class="skill-cat">AI & ML:</span> LLM APIs (OpenAI, Gemini, Claude), Prompt Chaining, Pipelines RAG, Vector Embeddings, Agents IA, Python, LangChain</li>
-          <li><span class="skill-cat">DevOps & Cloud:</span> Docker, Orchestration, CI/CD (GitHub Actions), Linux Admin, Vercel, Azure, Git</li>
-        </ul>
-
-        <div class="section-title">L A N G U E S</div>
-        <ul class="simple-list">
-          <li>Arabe (Natif)</li>
-          <li>Français (Courant / Bilingue - C1)</li>
-          <li>Anglais (Professionnel - B2/C1)</li>
-        </ul>
-
-        <div class="section-title">A P T I T U D E S</div>
-        <ul class="simple-list">
-          <li>Architecture Core Banking & Systèmes Financiers</li>
-          <li>Optimisation SQL Server, Indexation & Plans d'Exécution</li>
-          <li>Déploiement Haute Disponibilité en Data Center</li>
-          <li>Intelligence Artificielle, RAG & Agents Autonomes</li>
-        </ul>
-
-        <!-- Formation at the end -->
-        <div class="section-title">F O R M A T I O N</div>
-
-        <div class="edu-item">
-          <div class="edu-degree">FORMATION CBS & DATA CENTER</div>
-          <div class="edu-period">2025 – 2026</div>
-          <div class="edu-inst">Installation & Déploiement d'Environnements CBS en Data Center Bancaire</div>
-        </div>
-
-        <div class="edu-item">
-          <div class="edu-degree">LICENCE EN INFORMATIQUE</div>
-          <div class="edu-period">2022 – 2025</div>
-          <div class="edu-inst">Université Ferhat Abbas (UFAS 1)</div>
-        </div>
-
-        <div class="edu-item">
-          <div class="edu-degree">GOOGLE AI PROFESSIONAL CERTIFICATE</div>
-          <div class="edu-period">2026</div>
-          <div class="edu-inst">Google · Coursera (ID: YS26JC7JM5VP)</div>
-        </div>
-
-        <div class="edu-item">
-          <div class="edu-degree">FORMATION INGÉNIEUR DEVOPS</div>
-          <div class="edu-period">2025</div>
-          <div class="edu-inst">Institut de Formation Professionnelle</div>
-        </div>
-      </div>
-
-      <!-- Right Column -->
-      <div class="right-col">
-        <div class="section-title long-title">E X P É R I E N C E S &nbsp; P R O F E S S I O N N E L L E S</div>
-
-        <div class="job-item">
-          <div class="job-title-row">INGÉNIEUR CORE BANKING & DÉVELOPPEUR FULL STACK – BNH</div>
-          <div class="job-period-row">Septembre 2025 – Aujourd'hui | Banque Nationale d'Habitat (Alger)</div>
-          <ul class="job-bullets">
-            <li><span class="bullet-bold">Modernisation & CBS Temenos :</span> Participation active aux travaux de transition et d'implémentation du nouveau Core Banking System Temenos ; analyse des spécifications techniques et fonctionnelles, cartographie des flux d'interfaçage et intégration des modules périphériques.</li>
-            <li><span class="bullet-bold">Développement & Intégration Satellites CBS SYBU :</span> Développement et interconnexion d’applications et interfaces connexes permettant d’exploiter et d’échanger les données avec l'ancien Core Banking (SYBU) :</li>
-            <ul style="list-style-type: circle; padding-left: 16px; margin: 3px 0 4px 0;">
-              <li><span class="bullet-bold">Monétique :</span> Sous-systèmes monétiques pour le traitement sécurisé des transactions, flux cartes et compensation.</li>
-              <li><span class="bullet-bold">Centrale des Risques (CDR) :</span> Centralisation, analyse et déclaration réglementaire des risques de crédit.</li>
-              <li><span class="bullet-bold">Centrale des Impayés :</span> Solution d'identification, de suivi et de gestion automatisée des créances et impayés.</li>
-            </ul>
-            <li><span class="bullet-bold">SQL Server (T-SQL) & Performance de Données :</span> Conception de procédures stockées complexes, fonctions et transactions ACID ; mise en place de stratégies d'indexation avancée (index clusterisés, non-clusterisés et composites) pour accélérer les requêtes volumineuses ; analyse fine des plans d'exécution (Execution Plans), tuning de performance et résolution des contentions/deadlocks sur les flux financiers.</li>
-            <li><span class="bullet-bold">APIs REST C# (.NET 8) :</span> Architecture d'APIs sécurisées en ASP.NET Core, sécurité JWT/RBAC et interconnexion haute performance avec les bases SQL Server.</li>
-          </ul>
-        </div>
-
-        <div class="job-item">
-          <div class="job-title-row">INGÉNIEUR PROJET SAAS & AI – FREELANCE</div>
-          <div class="job-period-row">2024 – 2026 | Alger / En Ligne</div>
-          <ul class="job-bullets">
-            <li><span class="bullet-bold">PC LABS (Simulateur Matériel PC):</span> Application web interactive de simulation d'assemblage et d'analyse de compatibilité matérielle en temps réel avec calcul de consommation énergétique et détection de bottlenecks (Next.js 15, TypeScript, Tailwind CSS). <i>pc-labs-app.vercel.app</i></li>
-            <li><span class="bullet-bold">AURA BAGS (Portail B2B Packaging):</span> Plateforme e-commerce industrielle pour emballages avec configurateur dynamique sur-mesure (dimensions, grammage, impression), moteur de devis instantané et back-office sécurisé (Next.js 15, Node.js, Express, PostgreSQL). <i>bags-factory.vercel.app</i></li>
-            <li><span class="bullet-bold">AI NUTRITION (SaaS IA & RAG):</span> Plateforme SaaS autonome combinant des pipelines RAG, de la vectorisation de données nutritionnelles et du chaînage de prompts LLM pour générer des programmes alimentaires personnalisés (NestJS, Python, LangChain, OpenAI API).</li>
-          </ul>
-        </div>
-
-      </div>
+    <!-- Page 1 Footer -->
+    <div class="page-footer">
+      <span>Mahdi Djeridi — CV Développeur Full-Stack</span>
+      <span>Page 1 / 2</span>
+      <span>djeridimahdi10@gmail.com</span>
     </div>
   </div>
+
+
+  <!-- ==================== PAGE 2 ==================== -->
+  <div class="cv-page">
+    <div>
+      <!-- Expérience Freelance -->
+      <section class="section">
+        <h2 class="section-title">Expérience Professionnelle (Suite)</h2>
+
+        <div class="job-card">
+          <div class="job-header">
+            <div>
+              <div class="job-title">Ingénieur Full-Stack & Solutions Cloud (Freelance / Indépendant)</div>
+              <div class="job-company">Projets Autonomes & Conseil Digital</div>
+            </div>
+            <div class="job-meta">
+              <div>2024 – Présent</div>
+              <div class="job-location">Alger / En Ligne</div>
+            </div>
+          </div>
+          <ul class="bullet-list">
+            <li>
+              <strong>Développement Logiciel de Bout en Bout :</strong> Architecture, développement et déploiement de plateformes web complètes et solutions SaaS d'entreprise, assurant l'interface frontend, les APIs backend, la persistance des données et l'hébergement cloud.
+            </li>
+            <li>
+              <strong>Automatisation DevOps & Infrastructure :</strong> Automatisation des cycles de livraison via des pipelines CI/CD GitHub Actions, conteneurisation Docker des microservices et gestion de déploiements Edge avec haute disponibilité (99.9%).
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Projets Phares avec Liens explicites et visibles pour lecture sur papier -->
+      <section class="section">
+        <h2 class="section-title">Projets d'Ingénierie Réalisés (Consultables en Ligne)</h2>
+        <div class="projects-grid">
+          <!-- PC Labs -->
+          <div class="project-card">
+            <div class="project-head">
+              <span class="project-name">PC Labs — Simulateur Matériel PC</span>
+              <span class="project-badge">En Ligne</span>
+            </div>
+            <div class="project-url-row">
+              <span class="url-label">🌐 Lien :</span>
+              <a href="https://pc-labs-app.vercel.app" target="_blank" class="project-url">https://pc-labs-app.vercel.app</a>
+            </div>
+            <div class="project-tech">Next.js 15 · TypeScript · Tailwind CSS · React 19 · Vercel Edge</div>
+            <div class="project-desc">
+              Application web interactive de simulation et benchmarking d'assemblage PC. Moteur de compatibilité client sans latence validant sockets CPU, dégagements RAM, lignes PCIe, calcul thermique TDP dynamique et télémétrie des bottlenecks. Déploiement Vercel Global Edge CDN (Score Lighthouse 98+).
+            </div>
+          </div>
+
+          <!-- Aura Bags -->
+          <div class="project-card">
+            <div class="project-head">
+              <span class="project-name">Aura Bags — Portail Industriel B2B</span>
+              <span class="project-badge">En Ligne</span>
+            </div>
+            <div class="project-url-row">
+              <span class="url-label">🌐 Lien :</span>
+              <a href="https://bags-factory.vercel.app" target="_blank" class="project-url">https://bags-factory.vercel.app</a>
+            </div>
+            <div class="project-tech">Next.js 15 · Node.js · Express · PostgreSQL · Tailwind · Docker</div>
+            <div class="project-desc">
+              Portail e-commerce industriel B2B pour fabrication de sacs et emballages. Configurateur dynamique de matériaux et grammages (GSM) calculant la résistance à la traction et générant des devis instantanés. Tableau de bord administratif sécurisé, suivi de production multi-étapes et conteneurisation Docker.
+            </div>
+          </div>
+
+          <!-- NutriSaaS -->
+          <div class="project-card">
+            <div class="project-head">
+              <span class="project-name">NutriSaaS — Plateforme IA Nutrition</span>
+              <span class="project-badge">En Ligne</span>
+            </div>
+            <div class="project-url-row">
+              <span class="url-label">🌐 Lien :</span>
+              <a href="https://mahdi-gym.vercel.app" target="_blank" class="project-url">https://mahdi-gym.vercel.app</a>
+            </div>
+            <div class="project-tech">Next.js · React · Python · NestJS · API Vision · Docker</div>
+            <div class="project-desc">
+              Plateforme IA santé avec scanner d'aliments par vision 4K et estimation automatique des macronutriments (calories, protéines, glucides, lipides). Moteur métabolique adaptatif ajustant les besoins caloriques et coach IA conversationnel interactif adapté en Darija algérienne. Microservices conteneurisés.
+            </div>
+          </div>
+
+          <!-- Zain Agency -->
+          <div class="project-card">
+            <div class="project-head">
+              <span class="project-name">Zain Agency — Portail de Réservation</span>
+              <span class="project-badge">En Ligne</span>
+            </div>
+            <div class="project-url-row">
+              <span class="url-label">🌐 Lien :</span>
+              <a href="https://zain-agency.vercel.app/fr" target="_blank" class="project-url">https://zain-agency.vercel.app/fr</a>
+            </div>
+            <div class="project-tech">Next.js 15 · TypeScript · Routage i18n · Suivi QR Code</div>
+            <div class="project-desc">
+              Plateforme de réservation et gestion de voyage trilingue (AR/FR/EN). Gestion des packages Hajj & Omra, billetterie aérienne, traitement de visas, portail client avec vérification par QR code automatisé et tableau de bord de gestion des réservations.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Formation & Diplômes -->
+      <section class="section">
+        <h2 class="section-title">Formation & Certifications Professionnelles</h2>
+        <div class="edu-grid">
+          <div class="edu-item">
+            <div class="edu-degree">Licence en Informatique</div>
+            <div class="edu-inst">Université Ferhat Abbas (UFAS 1)</div>
+            <div class="edu-period">2022 – 2025 | Sétif, Algérie</div>
+            <div class="edu-desc">Génie logiciel, algorithmique avancée, bases de données relationnelles, systèmes d'exploitation, réseaux et architectures systèmes.</div>
+          </div>
+
+          <div class="edu-item">
+            <div class="edu-degree">Formation CBS & Déploiement Data Center</div>
+            <div class="edu-inst">Division Systèmes d'Information Bancaires</div>
+            <div class="edu-period">2025 – 2026 | Alger, Algérie</div>
+            <div class="edu-desc">Formation technique appliquée : installation, configuration et déploiement d'environnements Core Banking System en Data Center bancaire.</div>
+          </div>
+
+          <div class="edu-item">
+            <div class="edu-degree">Formation Ingénieur DevOps</div>
+            <div class="edu-inst">Institut de Formation Professionnelle</div>
+            <div class="edu-period">2025 | Alger, Algérie</div>
+            <div class="edu-desc">Conteneurisation Docker avancée, orchestration Kubernetes, automatisation de pipelines CI/CD Jenkins et administration de serveurs Linux.</div>
+          </div>
+
+          <div class="edu-item">
+            <div class="edu-degree">Google AI Professional Certificate</div>
+            <div class="edu-inst">Google · Coursera (ID: YS26JC7JM5VP)</div>
+            <div class="edu-period">2026 | Certification Professionnelle</div>
+            <div class="edu-desc">Architectures IA générative, embeddings vectoriels, Prompt Engineering, pipelines RAG et développement d'applications d'IA.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Langues & Atouts -->
+      <section class="section">
+        <div class="footer-row">
+          <div>
+            <h2 class="section-title">Langues</h2>
+            <div class="lang-pills">
+              <div class="lang-pill">Arabe : <span>Langue maternelle</span></div>
+              <div class="lang-pill">Français : <span>Courant / Bilingue (C1)</span></div>
+              <div class="lang-pill">Anglais : <span>Professionnel (B2/C1)</span></div>
+            </div>
+          </div>
+
+          <div>
+            <h2 class="section-title">Points Forts</h2>
+            <div class="lang-pills">
+              <div class="lang-pill">Core Banking (Temenos / SYBU)</div>
+              <div class="lang-pill">Cycle SDLC Complet & Qualité</div>
+              <div class="lang-pill">Automatisation CI/CD & DevOps</div>
+              <div class="lang-pill">Optimisation SQL & Indexation</div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Page 2 Footer -->
+    <div class="page-footer">
+      <span>Mahdi Djeridi — CV Développeur Full-Stack</span>
+      <span>Page 2 / 2</span>
+      <span>djeridimahdi10@gmail.com</span>
+    </div>
+  </div>
+
+</div>
+
 </body>
 </html>

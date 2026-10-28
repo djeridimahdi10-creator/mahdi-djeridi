@@ -8,6 +8,7 @@ import NavigationRail from "@/components/hud/NavigationRail";
 import SectionLabel from "@/components/hud/SectionLabel";
 import ContactCTA from "@/components/hud/ContactCTA";
 import HeaderControls from "@/components/hud/HeaderControls";
+import CVModal3D from "@/components/hud/CVModal3D";
 
 import HeroChapter from "@/components/storytelling/HeroChapter";
 import AboutChapter from "@/components/storytelling/AboutChapter";
@@ -59,6 +60,9 @@ export default function Home() {
         <SectionLabel />
         <ContactCTA />
       </div>
+
+      {/* 3D Resume Selection Modal */}
+      <CVModal3D />
 
       {/* 7 Storytelling Chapters Container */}
       <main

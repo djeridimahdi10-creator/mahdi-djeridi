@@ -9,13 +9,17 @@ interface PortfolioContextType {
   theme: Theme;
   setTheme: (theme: Theme) => void;
   t: TranslationSchema;
+  isCvModalOpen: boolean;
+  openCvModal: () => void;
+  closeCvModal: () => void;
 }
 
 const PortfolioContext = createContext<PortfolioContextType | undefined>(undefined);
 
 export function PortfolioProvider({ children }: { children: React.ReactNode }) {
-  const [language, setLanguageState] = useState<Language>("en");
+  const [language, setLanguageState] = useState<Language>("fr"); // Default to French as requested
   const [theme, setThemeState] = useState<Theme>("dark");
+  const [isCvModalOpen, setIsCvModalOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -33,7 +37,17 @@ export function PortfolioProvider({ children }: { children: React.ReactNode }) {
       document.documentElement.setAttribute("data-theme", "dark");
     }
 
+    const handleOpen = () => setIsCvModalOpen(true);
+    const handleClose = () => setIsCvModalOpen(false);
+    window.addEventListener("open-cv-modal", handleOpen);
+    window.addEventListener("close-cv-modal", handleClose);
+
     setMounted(true);
+
+    return () => {
+      window.removeEventListener("open-cv-modal", handleOpen);
+      window.removeEventListener("close-cv-modal", handleClose);
+    };
   }, []);
 
   const setLanguage = (lang: Language) => {
@@ -47,6 +61,9 @@ export function PortfolioProvider({ children }: { children: React.ReactNode }) {
     document.documentElement.setAttribute("data-theme", newTheme);
   };
 
+  const openCvModal = () => setIsCvModalOpen(true);
+  const closeCvModal = () => setIsCvModalOpen(false);
+
   const t = translations[language];
 
   return (
@@ -57,6 +74,9 @@ export function PortfolioProvider({ children }: { children: React.ReactNode }) {
         theme,
         setTheme,
         t,
+        isCvModalOpen,
+        openCvModal,
+        closeCvModal,
       }}
     >
       {children}
@@ -69,11 +89,14 @@ export function usePortfolio() {
   if (!context) {
     // Fallback if rendered outside provider during SSG/hydration
     return {
-      language: "en" as Language,
+      language: "fr" as Language,
       setLanguage: () => {},
       theme: "dark" as Theme,
       setTheme: () => {},
-      t: translations.en,
+      t: translations.fr,
+      isCvModalOpen: false,
+      openCvModal: () => {},
+      closeCvModal: () => {},
     };
   }
   return context;

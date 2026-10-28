@@ -64,7 +64,7 @@ const TECH_PILLS: TechPill[] = [
 
 export default function HeroChapter() {
   const containerRef = useRef<HTMLDivElement>(null!);
-  const { t, language } = usePortfolio();
+  const { t, language, openCvModal } = usePortfolio();
 
   // Mouse tilt position for Studio Card
   const [tilt, setTilt] = useState({ x: 0, y: 0 });
@@ -500,20 +500,19 @@ export default function HeroChapter() {
               </svg>
             </motion.button>
 
-            <motion.a
-              href="/djeridi-mahdi-cv.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
+            <motion.button
+              type="button"
+              onClick={openCvModal}
               whileHover={{ scale: 1.03, y: -2 }}
               whileTap={{ scale: 0.97 }}
               className="btn-secondary"
-              style={{ pointerEvents: "all" }}
+              style={{ pointerEvents: "all", cursor: "pointer" }}
             >
               <span>{t.hero.viewResume}</span>
               <svg width="13" height="13" viewBox="0 0 13 13" fill="none">
                 <path d="M1 6.5h11M6.5 1l5.5 5.5-5.5 5.5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
-            </motion.a>
+            </motion.button>
 
             {/* Social & Contact Icons */}
             <div style={{ display: "flex", alignItems: "center", gap: "8px", marginLeft: "auto" }} className="social-row-wrap">

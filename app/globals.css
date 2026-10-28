@@ -973,3 +973,10 @@ canvas { display: block; }
   }
 }
 
+/* Modal open freeze state */
+body.modal-open {
+  overflow: hidden !important;
+  touch-action: none;
+}
+
+
